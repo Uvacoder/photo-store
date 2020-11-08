@@ -1,0 +1,11 @@
+.dark-bg {
+  background-color: var(--blue-4);
+}
+
+.full-height {
+  height: 100%;
+}
+
+.navbar-custom { 
+  background-color: var(--blue0-5); 
+} 
