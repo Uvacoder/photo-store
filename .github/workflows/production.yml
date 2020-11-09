@@ -25,7 +25,7 @@ jobs:
       run: |
         npm run build
     - name: Deploy
-      uses: jakejarvis/s3-sync-action@master
+      uses: cameronfyfe/s3-sync-action@master
       with:
         args: --acl public-read --delete
       env:
