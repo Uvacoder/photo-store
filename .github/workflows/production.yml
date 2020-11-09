@@ -27,7 +27,7 @@ jobs:
     - name: Deploy
       uses: cameronfyfe/s3-sync-action@master
       with:
-        args: --delete
+        args: --acl public-read --delete
       env:
         AWS_S3_BUCKET: west-lens-photography
         AWS_ACCESS_KEY_ID: AKIASMK3GSAIQCT4W5W4
