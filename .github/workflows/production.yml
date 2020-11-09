@@ -1,4 +1,4 @@
-name: Production Buildon:
+name: Production Build
 
 on:
   push:
