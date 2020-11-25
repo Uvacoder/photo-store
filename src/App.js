@@ -15,6 +15,7 @@ class App extends React.Component {
     super();
     this.state = {
       width: window.innerWidth,
+      slideMenuOpen: false
     };
   }
   
@@ -38,8 +39,11 @@ class App extends React.Component {
     return isMobile ? (
       <div style={{width: "100%"}}>
         <BrowserRouter>
-          <SlideMenu right={true}>
-            <Sidebar/>
+          <SlideMenu right={true}
+                     isOpen={this.state.slideMenuOpen}
+                     onStateChange={(state) => {this.setState({ slideMenuOpen: state.isOpen })}}
+          >
+            <Sidebar onSelect={() => this.setState({ slideMenuOpen: false })} />
           </SlideMenu>
           <div style={{height: "96px"}}/>
           <PageContent/>
