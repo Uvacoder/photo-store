@@ -1,21 +1,36 @@
 import React from 'react';
 import Gallery from 'react-photo-gallery';
-// import Gallery from 'react-grid-gallery';
-import { PHOTOS_ALL } from './photos.js';
+import { loadPhotos, PHOTOS_ALL } from './photos.js';
 
-const Portfolio = () => (
+export const Portfolio = props => (
   <div style={{width: "100%"}}>
-    <Gallery photos={loadImagesAll()}
+    <Gallery photos={loadPhotos(props.photoGroup)}
              direction={"column"}
-     />
-    {/* <Gallery images={loadImagesAll()}
-             enableImageSelection={false}
-    /> */}
+    />
   </div>
-)
+);
 
-function loadImagesAll() {
-  return PHOTOS_ALL;
-}
+export const PortfolioAll = () => (
+  <div style={{width: "100%"}}>
+    <Gallery photos={PHOTOS_ALL}
+             direction={"column"}
+    />
+  </div>
+);
 
-export default Portfolio;
+export const Portfolio1 = () => (
+  <div style={{width: "100%"}}>
+    <Gallery photos={loadPhotos("va")}
+             direction={"column"}
+    />
+  </div>
+);
+
+export const Portfolio2 = () => (
+  <div style={{width: "100%"}}>
+    <Gallery photos={loadPhotos("cp")}
+             direction={"column"}
+    />
+  </div>
+);
+
