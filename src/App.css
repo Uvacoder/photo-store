@@ -1,18 +1,10 @@
-.dark-bg {
-  background-color: var(--blue-4);
-}
-
-.full-height {
-  height: 100%;
-}
-
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
-  right: 36px;
-  top: 36px;
+  width: 24px;
+  height: 20px;
+  right: 24px;
+  top: 24px;
 }
 
 /* Color/shape of burger icon bars */
