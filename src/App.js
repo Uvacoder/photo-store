@@ -18,7 +18,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      width: window.innerWidth,
+      isMobile: false,
       slideMenuOpen: false
     };
   }
@@ -32,7 +32,18 @@ class App extends React.Component {
   }
   
   handleWindowSizeChange = () => {
-    this.setState({ width: window.innerWidth });
+    // FYI: URL bar on mobile browsers resizes window so this is called
+    // quite a bit whenever URL bar appears/disapperas
+    // Only update state when necessary
+    if (window.innerWidth <= 500) {
+      if (!this.state.isMobile) {
+        this.setState({ isMobile: true })
+      }
+    } else {
+      if (this.state.isMobile) {
+        this.setState({ isMobile: false })
+      }
+    }
   };
 
   setSlideMenu = open => {this.setState({ slideMenuOpen: open })}
@@ -40,11 +51,7 @@ class App extends React.Component {
   closeSlideMenu = () => {this.setSlideMenu(false)}
 
   render() {
-
-    const { width } = this.state;
-    const isMobile = width <= 500;
-
-    return isMobile ? (
+    return this.state.isMobile ? (
       <div style={{width: "100%", zIndex: 0}}>
         <BrowserRouter>
           <SlideMenu right={true}

@@ -1,6 +1,5 @@
 import React from 'react';
 import Gallery from 'react-photo-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
 import { getPhotos } from './photos.js';
 
 import GalleryModal from '../../components/GalleryModal/GalleryModal.js';
