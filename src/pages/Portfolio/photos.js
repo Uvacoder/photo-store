@@ -4,14 +4,16 @@ export function getPhotos(group) {
   if (typeof group === 'undefined') {
     group = "all"
   }
-  // Filter to photos in specifed group
-  const photos = PHOTOS_DB.filter(i => i.groups.hasOwnProperty(group))
+
+  const photos = PHOTOS
+                  // Filter to photos in specifed group
+                  .filter(i => i.groups.hasOwnProperty(group))
                   // Sort by value for that photo group key
                   .sort( (a,b) => 
                     (a.groups[group] > b.groups[group]) ? 1 :
                     (a.groups[group] < b.groups[group]) ? -1 :
                     0
-                  )
+                  );
   // Map to grid library format
   const thumbnails = photos.map(i => ({ src: i.thumbnail,
                                         width: i.width,
@@ -21,10 +23,11 @@ export function getPhotos(group) {
   const fullsize = photos.map(i => ({ original: i.src,
                                       thumbnail: i.thumbnail
                                     }));
+
   return { thumbnails, fullsize };
 }
 
-const PHOTOS_DB = [
+const PHOTOS = [
   {
     groups: {all: 1, cp: 2},
     src: "/assets/photos/Cailtin&Paul-34.jpg",
