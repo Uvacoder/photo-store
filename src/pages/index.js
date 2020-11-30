@@ -11,9 +11,9 @@ const PageContent = () => (
     <Route path='/portfolio/all'       component={() => <Portfolio photoGroup="all"/>} />
     <Route path='/portfolio/category1' component={() => <Portfolio photoGroup="va"/>} />
     <Route path='/portfolio/category2' component={() => <Portfolio photoGroup="cp"/>} />
-    <Route path='/fieldnotes'          component={() => <h3 class='text-center'>Field Notes</h3>} />
-    <Route path='/about'               component={() => <h3 class='text-center'>About</h3>} />
-    <Route path='/contact'             component={() => <h3 class='text-center'>Contact</h3>} />
+    <Route path='/fieldnotes'          component={() => <h3>Field Notes</h3>} />
+    <Route path='/about'               component={() => <h3>About</h3>} />
+    <Route path='/contact'             component={() => <h3>Contact</h3>} />
   </div>
 )
 

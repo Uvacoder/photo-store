@@ -1,3 +1,23 @@
+/* Main page layout divs */
+.main-div {
+  z-index: 0;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "sidebar page-content";
+}
+
+.sidebar {
+  grid-area: "sidebar";
+  vertical-align: top;
+}
+
+.page-content {
+  grid-area: "page-content";
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;

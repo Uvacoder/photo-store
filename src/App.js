@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { slide as SlideMenu } from 'react-burger-menu';
+import Modal from 'react-modal';
 
 import Logo from './components/Logo/Logo.js'
 import Sidebar from './components/Sidebar/Sidebar.js';
@@ -8,6 +9,8 @@ import PageContent from './pages';
 
 import './index.css';
 import './App.css';
+
+Modal.setAppElement(document.getElementById('root'));
 
 class App extends React.Component {
 
@@ -30,18 +33,18 @@ class App extends React.Component {
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
   };
-  
+
   render() {
 
     const { width } = this.state;
     const isMobile = width <= 500;
 
     return isMobile ? (
-      <div style={{width: "100%"}}>
+      <div style={{width: "100%", zIndex: 0}}>
         <BrowserRouter>
           <SlideMenu right={true}
                      isOpen={this.state.slideMenuOpen}
-                     onStateChange={(state) => {this.setState({ slideMenuOpen: state.isOpen })}}
+                     onStateChange={(state) => this.setState({ slideMenuOpen: state.isOpen })}
           >
             <Sidebar onSelect={() => this.setState({ slideMenuOpen: false })} />
           </SlideMenu>
@@ -50,18 +53,16 @@ class App extends React.Component {
         </BrowserRouter>
       </div>
     ) : (
-      <div style={{width: "100%", display: "table"}}>
-        <div style={{display: "table-row"}}>
-          <BrowserRouter>
-            <div style={{width: 200, display: "table-cell", verticalAlign: "top"}}>
-              <Logo/>
-              <Sidebar/>
-            </div>
-            <div style={{display: "table-cell"}}>
-              <PageContent/>
-            </div>
-          </BrowserRouter>
-        </div>
+      <div class="main-div">
+        <BrowserRouter>
+          <div class="sidebar">
+            <Logo/>
+            <Sidebar/>
+          </div>
+          <div class="page-content">
+            <PageContent/>
+          </div>
+        </BrowserRouter>
       </div>
     )
   }
