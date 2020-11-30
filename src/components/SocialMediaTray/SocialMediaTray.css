@@ -1,0 +1,15 @@
+.icon-container {
+  margin: 5px;
+}
+
+.icon-container > * {
+  margin: 5px;
+}
+
+a:link, a:visited {
+  color: darkgray;
+}
+
+a:hover, a:active {
+  color: gray;
+}

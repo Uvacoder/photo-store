@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Sidenav, Nav, Icon, Dropdown } from 'rsuite';
 import 'rsuite/dist/styles/rsuite-default.css';
 
-const Sidebar = props => (
+const SidebarMenu = props => (
 
   <Sidenav onSelect={props.onSelect}>
     <Sidenav.Body>
@@ -12,7 +12,8 @@ const Sidebar = props => (
                   icon={<Icon icon="tree" />}>
           Home
         </Nav.Item>
-        <Dropdown eventKey="2" title="Portfolio" icon={<Icon icon="folder-open" />}>
+        <Dropdown title="Portfolio"
+                  icon={<Icon icon="folder-open" />}>
           <Dropdown.Item componentClass={Link} to='/portfolio/all'>
             All
           </Dropdown.Item>
@@ -41,4 +42,4 @@ const Sidebar = props => (
   </Sidenav>
 );
 
-export default Sidebar;
+export default SidebarMenu;

@@ -4,10 +4,10 @@ import { slide as SlideMenu } from 'react-burger-menu';
 import Modal from 'react-modal';
 
 import Logo from './components/Logo/Logo.js'
-import Sidebar from './components/Sidebar/Sidebar.js';
+import SidebarMenu from './components/SidebarMenu/SidebarMenu.js';
 import PageContent from './pages';
+import SocialMediaTray from './components/SocialMediaTray/SocialMediaTray.js';
 
-import './index.css';
 import './App.css';
 
 Modal.setAppElement(document.getElementById('root'));
@@ -46,7 +46,7 @@ class App extends React.Component {
                      isOpen={this.state.slideMenuOpen}
                      onStateChange={(state) => this.setState({ slideMenuOpen: state.isOpen })}
           >
-            <Sidebar onSelect={() => this.setState({ slideMenuOpen: false })} />
+            <SidebarMenu onSelect={() => this.setState({ slideMenuOpen: false })} />
           </SlideMenu>
           <div style={{height: "96px"}}/>
           <PageContent/>
@@ -57,7 +57,8 @@ class App extends React.Component {
         <BrowserRouter>
           <div class="sidebar">
             <Logo/>
-            <Sidebar/>
+            <SidebarMenu/>
+            <SocialMediaTray/>
           </div>
           <div class="page-content">
             <PageContent/>
