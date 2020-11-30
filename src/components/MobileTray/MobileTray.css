@@ -1,0 +1,44 @@
+:root {
+  --tray-height: 40px;
+}
+
+.phantom-tray {
+  display: block;
+  height: var(--tray-height);
+  width: 100%;
+}
+
+.mobile-tray-container {
+  z-index: 1;
+  background-color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: var(--tray-height);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "sm-icons bm-bars";
+}
+
+.sm-icons-container {
+  grid-area: "sm-icons";
+  height: 100%;
+  vertical-align: middle;
+}
+
+.bm-bars-container {
+  grid-area: "bm-bars";
+  height: 100%;
+  vertical-align: middle;
+}
+
+.bm-bars {
+  margin-left: auto;
+  margin-right: 10px;
+  fill: red;
+  vertical-align: middle;
+}

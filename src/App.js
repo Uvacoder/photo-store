@@ -7,6 +7,7 @@ import Logo from './components/Logo/Logo.js'
 import SidebarMenu from './components/SidebarMenu/SidebarMenu.js';
 import PageContent from './pages';
 import SocialMediaTray from './components/SocialMediaTray/SocialMediaTray.js';
+import MobileTray from './components/MobileTray/MobileTray.js';
 
 import './App.css';
 
@@ -34,6 +35,10 @@ class App extends React.Component {
     this.setState({ width: window.innerWidth });
   };
 
+  setSlideMenu = open => {this.setState({ slideMenuOpen: open })}
+  openSlideMenu = () => {this.setSlideMenu(true)}
+  closeSlideMenu = () => {this.setSlideMenu(false)}
+
   render() {
 
     const { width } = this.state;
@@ -44,12 +49,12 @@ class App extends React.Component {
         <BrowserRouter>
           <SlideMenu right={true}
                      isOpen={this.state.slideMenuOpen}
-                     onStateChange={(state) => this.setState({ slideMenuOpen: state.isOpen })}
+                     onStateChange={(state) => this.setSlideMenu(state.isOpen)}
           >
-            <SidebarMenu onSelect={() => this.setState({ slideMenuOpen: false })} />
+            <SidebarMenu onSelect={() => this.closeSlideMenu()} />
           </SlideMenu>
-          <div style={{height: "96px"}}/>
           <PageContent/>
+          <MobileTray onBurgerClick={() => this.openSlideMenu()} />
         </BrowserRouter>
       </div>
     ) : (
