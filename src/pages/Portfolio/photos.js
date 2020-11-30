@@ -4,16 +4,14 @@ export function getPhotos(group) {
   if (typeof group === 'undefined') {
     group = "all"
   }
-
-  const photos = PHOTOS
-                  // Filter to photos in specifed group
-                  .filter(i => i.groups.hasOwnProperty(group))
-                  // Sort by value for that photo group key
-                  .sort( (a,b) => 
-                    (a.groups[group] > b.groups[group]) ? 1 :
-                    (a.groups[group] < b.groups[group]) ? -1 :
-                    0
-                  );
+                        // Filter to photos in specifed group
+  const photos = PHOTOS.filter(i => i.groups.hasOwnProperty(group))
+                        // Sort by value for that photo group key
+                        .sort( (a,b) => 
+                          (a.groups[group] > b.groups[group]) ? 1 :
+                          (a.groups[group] < b.groups[group]) ? -1 :
+                          0
+                        );
   // Map to grid library format
   const thumbnails = photos.map(i => ({ src: i.thumbnail,
                                         width: i.width,
