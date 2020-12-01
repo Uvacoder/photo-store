@@ -11,7 +11,7 @@
 .mobile-tray-container {
   z-index: 1;
   background-color: white;
-  border-color: black;
+  border-color: gray;
   border-top-style: solid;
   border-width: 1px;
   position: fixed;
