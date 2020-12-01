@@ -1,5 +1,5 @@
 :root {
-  --tray-height: 40px;
+  --tray-height: 50px;
 }
 
 .phantom-tray {
@@ -11,6 +11,9 @@
 .mobile-tray-container {
   z-index: 1;
   background-color: white;
+  border-color: black;
+  border-top-style: solid;
+  border-width: 1px;
   position: fixed;
   left: 0;
   bottom: 0;
