@@ -18,7 +18,6 @@ const MobileTray = props => (
       </div>
     </div>
   </div>
-
 );
 
 export default MobileTray;

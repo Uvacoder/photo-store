@@ -19,7 +19,6 @@ class Portfolio extends React.Component {
   }
 
   closeGallery() {
-    console.log("closeGallery()")
     this.setState({ galleryOpen: false });
   }
 
