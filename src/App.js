@@ -52,35 +52,37 @@ class App extends React.Component {
   openSlideMenu = () => {this.setSlideMenu(true)}
   closeSlideMenu = () => {this.setSlideMenu(false)}
 
-  render() {
-    return this.state.isMobile ? (
-      <div style={{width: "100%", zIndex: 0}}>
-        <BrowserRouter>
-          <SlideMenu right={true}
-                     isOpen={this.state.slideMenuOpen}
-                     onStateChange={(state) => this.setSlideMenu(state.isOpen)}
-          >
-            <SidebarMenu onSelect={() => this.closeSlideMenu()} />
-          </SlideMenu>
+  renderNormal = () => (
+    <div class="main-div">
+      <BrowserRouter>
+        <div class="sidebar">
+          <Logo/>
+          <SidebarMenu/>
+          <SocialMediaTray/>
+        </div>
+        <div class="page-content">
           <PageContent/>
-          <MobileTray onBurgerClick={() => this.openSlideMenu()} />
-        </BrowserRouter>
-      </div>
-    ) : (
-      <div class="main-div">
-        <BrowserRouter>
-          <div class="sidebar">
-            <Logo/>
-            <SidebarMenu/>
-            <SocialMediaTray/>
-          </div>
-          <div class="page-content">
-            <PageContent/>
-          </div>
-        </BrowserRouter>
-      </div>
-    )
-  }
-}
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 
+  renderMobile = () => (
+    <div>
+      <BrowserRouter>
+        <SlideMenu right={true}
+                    isOpen={this.state.slideMenuOpen}
+                    onStateChange={(state) => this.setSlideMenu(state.isOpen)}
+        >
+          <SidebarMenu onSelect={() => this.closeSlideMenu()} />
+        </SlideMenu>
+        <PageContent/>
+        <MobileTray onBurgerClick={() => this.openSlideMenu()} />
+      </BrowserRouter>
+    </div>
+  );
+
+  render = () =>
+    this.state.isMobile ? this.renderMobile() : this.renderNormal();
+}
 export default App;
