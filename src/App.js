@@ -68,7 +68,7 @@ class App extends React.Component {
   );
 
   renderMobile = () => (
-    <div>
+    <div class="main-div-mobile">
       <BrowserRouter>
         <SlideMenu right={true}
                     isOpen={this.state.slideMenuOpen}
