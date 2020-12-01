@@ -25,6 +25,8 @@ class App extends React.Component {
   
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
+    // Initial determination of window size
+    this.handleWindowSizeChange();
   }
   
   componentWillUnmount() {
