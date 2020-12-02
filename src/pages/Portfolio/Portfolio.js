@@ -1,36 +1,44 @@
 import React, { useState } from 'react';
 import Gallery from 'react-photo-gallery';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 import { getPhotos } from './photos.js';
 
-import GalleryModal from '../../components/GalleryModal/GalleryModal.js';
-
-const Portfolio = props => {
+const Portfolio = ({
+  photoGroup
+}) => {
 
   const [galleryOpen, setGalleryOpen] = useState(false);
-  const [startIndex, setStartIndex] = useState(0);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
-  const photos = getPhotos(props.photoGroup);
+  const {thumbnails, images} = getPhotos(photoGroup);
+
+  const photoIndexNext = (photoIndex + 1) % images.length;
+  const photoIndexPrevious = (photoIndex - 1 + images.length) % images.length;
 
   return (
-    <div style={{width: "100%"}}>
+    <div>
       {/* Photo Grid */}
-      <Gallery photos={photos.thumbnails}
+      <Gallery photos={thumbnails}
                 direction={"column"}
                 onClick={(evt, photo) => {
-                  setStartIndex(photo.index);
+                  setPhotoIndex(photo.index);
                   if (!galleryOpen) {
                     setGalleryOpen(true);
                   }
                 }}
       />
-      {/* Photo Gallery Modal */}
-      <GalleryModal z-index={1}
-                    photos={photos.fullsize}
-                    isOpen={galleryOpen}
-                    onOpen={() => setGalleryOpen(true)}
-                    onClose={() => setGalleryOpen(false)}
-                    startIndex={startIndex}
-      />
+      {/* Lightbox Gallery Popup */}
+      {galleryOpen && (
+        <Lightbox
+          mainSrc={images[photoIndex]}
+          nextSrc={images[photoIndexNext]}
+          prevSrc={images[photoIndexPrevious]}
+          onCloseRequest={() => setGalleryOpen(false)}
+          onMovePrevRequest={() => setPhotoIndex(photoIndexPrevious)}
+          onMoveNextRequest={() => setPhotoIndex(photoIndexNext)}
+        />
+      )}
     </div>
   );
 }

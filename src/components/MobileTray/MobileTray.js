@@ -2,7 +2,9 @@ import { Button, Icon } from 'rsuite';
 import SocialMediaTray from '../SocialMediaTray/SocialMediaTray.js';
 import './MobileTray.css';
 
-const MobileTray = props => (
+const MobileTray = ({
+  onBurgerClick
+}) => (
   <div>
     <div class="phantom-tray"/>
     <div class="mobile-tray-container">
@@ -11,7 +13,7 @@ const MobileTray = props => (
       </div>
       <div class="bm-bars-container">
         <Button appearance="subtle"
-                onClick={props.onBurgerClick}
+                onClick={onBurgerClick}
         >
           <Icon class="bm-bars" icon="bars" size="2x" />
         </Button>

@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { Sidenav, Nav, Icon, Dropdown } from 'rsuite';
 import 'rsuite/dist/styles/rsuite-default.css';
 
-const SidebarMenu = props => (
+const SidebarMenu = ({
+  onSelect
+}) => (
 
-  <Sidenav onSelect={props.onSelect}>
+  <Sidenav onSelect={onSelect}>
     <Sidenav.Body>
       <Nav>
         <Nav.Item componentClass={Link} to='/home'

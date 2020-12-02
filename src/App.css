@@ -2,7 +2,7 @@
 
 /* Main page layout divs */
 .main-div {
-  z-index: 0;
+  z-index: -1;
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: 1fr;

@@ -17,12 +17,10 @@ export function getPhotos(group) {
                                         width: i.width,
                                         height: i.height
                                       }));
-  // Map to gallery library format
-  const fullsize = photos.map(i => ({ original: i.src,
-                                      thumbnail: i.thumbnail
-                                    }));
+  // Map to lightbox library format
+  const images = photos.map(i => (i.src));
 
-  return { thumbnails, fullsize };
+  return { thumbnails, images };
 }
 
 const PHOTOS = [

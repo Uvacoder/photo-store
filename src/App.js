@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { slide as SlideMenu } from 'react-burger-menu';
-import Modal from 'react-modal';
 import Logo from './components/Logo/Logo.js'
 import SidebarMenu from './components/SidebarMenu/SidebarMenu.js';
 import PageContent from './pages';
 import SocialMediaTray from './components/SocialMediaTray/SocialMediaTray.js';
+import { slide as SlideMenu } from 'react-burger-menu';
 import MobileTray from './components/MobileTray/MobileTray.js';
 
 import './App.css';
-
-Modal.setAppElement(document.getElementById('root'));
 
 const App = () => {
 
@@ -44,35 +41,35 @@ const App = () => {
 
   const renderNormal = () => (
     <div class="main-div">
-      <BrowserRouter>
-        <div class="sidebar">
-          <Logo/>
-          <SidebarMenu/>
-          <SocialMediaTray/>
-        </div>
-        <div class="page-content">
-          <PageContent/>
-        </div>
-      </BrowserRouter>
+      <div class="sidebar">
+        <Logo/>
+        <SidebarMenu/>
+        <SocialMediaTray/>
+      </div>
+      <div class="page-content">
+        <PageContent/>
+      </div>
     </div>
   );
 
   const renderMobile = () => (
     <div class="main-div-mobile">
-      <BrowserRouter>
-        <SlideMenu right={true}
-                    isOpen={slideMenuOpen}
-                    onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
-        >
-          <SidebarMenu onSelect={() => setSlideMenuOpen(false)} />
-        </SlideMenu>
-        <PageContent/>
-        <MobileTray onBurgerClick={() => setSlideMenuOpen(true)} />
-      </BrowserRouter>
+      <SlideMenu right={true}
+                  isOpen={slideMenuOpen}
+                  onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
+      >
+        <SidebarMenu onSelect={() => setSlideMenuOpen(false)} />
+      </SlideMenu>
+      <PageContent/>
+      <MobileTray onBurgerClick={() => setSlideMenuOpen(true)} />
     </div>
   );
 
-  return isMobile ? renderMobile() : renderNormal();
+  return (
+    <BrowserRouter>
+      {isMobile ? renderMobile() : renderNormal()}
+    </BrowserRouter>
+  );
 }
 
 export default App;
