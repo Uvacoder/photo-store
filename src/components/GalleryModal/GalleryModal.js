@@ -5,26 +5,21 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 const gallery = React.createRef();
 
-function GalleryModal(props) {
+const GalleryModal = props => (
 
-  const onOpen = () => {
-    props.onOpen?.()
-    gallery.current?.fullScreen();
-  }
-
-  return (
-    <Modal isOpen={props.isOpen}
-          onAfterOpen={onOpen}
-          onRequestClose={() => props.onClose?.()}
-    >
-      <ImageGallery ref={gallery}
-                    items={props.photos}
-                    startIndex={props.startIndex}
-                    useBrowserFullscreen={false}
-      />
-    </Modal>
-  );
-
-}
+  <Modal isOpen={props.isOpen}
+        onAfterOpen={() => {
+          props.onOpen?.()
+          gallery.current?.fullScreen();
+        }}
+        onRequestClose={() => props.onClose?.()}
+  >
+    <ImageGallery ref={gallery}
+                  items={props.photos}
+                  startIndex={props.startIndex}
+                  useBrowserFullscreen={false}
+    />
+  </Modal>
+);
 
 export default GalleryModal;

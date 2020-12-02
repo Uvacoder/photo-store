@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { slide as SlideMenu } from 'react-burger-menu';
 import Modal from 'react-modal';
-
 import Logo from './components/Logo/Logo.js'
 import SidebarMenu from './components/SidebarMenu/SidebarMenu.js';
 import PageContent from './pages';
@@ -13,46 +12,37 @@ import './App.css';
 
 Modal.setAppElement(document.getElementById('root'));
 
-class App extends React.Component {
+const App = () => {
 
-  constructor() {
-    super();
-    this.state = {
-      isMobile: false,
-      slideMenuOpen: false
-    };
-  }
-  
-  componentWillMount() {
-    window.addEventListener('resize', this.handleWindowSizeChange);
-    // Initial determination of window size
-    this.handleWindowSizeChange();
-  }
-  
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowSizeChange);
-  }
-  
-  handleWindowSizeChange = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [slideMenuOpen, setSlideMenuOpen] = useState(false);
+
+  const handleWindowSizeChange = () => {
     // FYI: URL bar on mobile browsers resizes window so this is called
     // quite a bit whenever URL bar appears/disapperas
     // Only update state when necessary
     if (window.innerWidth <= 500) {
-      if (!this.state.isMobile) {
-        this.setState({ isMobile: true })
+      if (!isMobile) {
+        setIsMobile(true);
       }
     } else {
-      if (this.state.isMobile) {
-        this.setState({ isMobile: false })
+      if (isMobile) {
+        setIsMobile(false);
       }
     }
   };
 
-  setSlideMenu = open => {this.setState({ slideMenuOpen: open })}
-  openSlideMenu = () => {this.setSlideMenu(true)}
-  closeSlideMenu = () => {this.setSlideMenu(false)}
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    // Initial determination of window size
+    handleWindowSizeChange();
 
-  renderNormal = () => (
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  });
+
+  const renderNormal = () => (
     <div class="main-div">
       <BrowserRouter>
         <div class="sidebar">
@@ -67,22 +57,22 @@ class App extends React.Component {
     </div>
   );
 
-  renderMobile = () => (
+  const renderMobile = () => (
     <div class="main-div-mobile">
       <BrowserRouter>
         <SlideMenu right={true}
-                    isOpen={this.state.slideMenuOpen}
-                    onStateChange={(state) => this.setSlideMenu(state.isOpen)}
+                    isOpen={slideMenuOpen}
+                    onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
         >
-          <SidebarMenu onSelect={() => this.closeSlideMenu()} />
+          <SidebarMenu onSelect={() => setSlideMenuOpen(false)} />
         </SlideMenu>
         <PageContent/>
-        <MobileTray onBurgerClick={() => this.openSlideMenu()} />
+        <MobileTray onBurgerClick={() => setSlideMenuOpen(true)} />
       </BrowserRouter>
     </div>
   );
 
-  render = () =>
-    this.state.isMobile ? this.renderMobile() : this.renderNormal();
+  return isMobile ? renderMobile() : renderNormal();
 }
+
 export default App;

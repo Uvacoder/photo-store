@@ -1,55 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Gallery from 'react-photo-gallery';
 import { getPhotos } from './photos.js';
 
 import GalleryModal from '../../components/GalleryModal/GalleryModal.js';
 
-class Portfolio extends React.Component {
+const Portfolio = props => {
 
-  constructor () {
-    super();
-    this.state = {
-      galleryOpen: false,
-      startIndex: 0
-    };
-  }
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [startIndex, setStartIndex] = useState(0);
 
-  openGallery() {
-    this.setState({ galleryOpen: true });
-  }
+  const photos = getPhotos(props.photoGroup);
 
-  closeGallery() {
-    this.setState({ galleryOpen: false });
-  }
-
-  handlePhotoGridClick(evt, photo) {
-    this.setState({ startIndex: photo.index });
-    if (!this.state.galleryOpen) {
-      this.openGallery();
-    }
-  }
-
-  render() {
-    const photos = getPhotos(this.props.photoGroup);
-
-    return (
-      <div style={{width: "100%"}}>
-        {/* Photo Grid */}
-        <Gallery photos={photos.thumbnails}
-                 direction={"column"}
-                 onClick={(e, p) => this.handlePhotoGridClick(e, p)}
-        />
-        {/* Photo Gallery Modal */}
-        <GalleryModal z-index={1}
-                      photos={photos.fullsize}
-                      isOpen={this.state.galleryOpen}
-                      onOpen={() => this.openGallery()}
-                      onClose={() => this.closeGallery()}
-                      startIndex={this.state.startIndex}
-        />
-      </div>
-    );
-  }
+  return (
+    <div style={{width: "100%"}}>
+      {/* Photo Grid */}
+      <Gallery photos={photos.thumbnails}
+                direction={"column"}
+                onClick={(evt, photo) => {
+                  setStartIndex(photo.index);
+                  if (!galleryOpen) {
+                    setGalleryOpen(true);
+                  }
+                }}
+      />
+      {/* Photo Gallery Modal */}
+      <GalleryModal z-index={1}
+                    photos={photos.fullsize}
+                    isOpen={galleryOpen}
+                    onOpen={() => setGalleryOpen(true)}
+                    onClose={() => setGalleryOpen(false)}
+                    startIndex={startIndex}
+      />
+    </div>
+  );
 }
 
 export default Portfolio;
