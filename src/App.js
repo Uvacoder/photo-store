@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Logo from './components/Logo/Logo.js'
 import SidebarMenu from './components/SidebarMenu/SidebarMenu.js';
 import PageContent from './pages';
-import SocialMediaTray from './components/SocialMediaTray/SocialMediaTray.js';
+import SocialMediaIcons from './components/SocialMediaTray/SocialMediaIcons.js';
 import { slide as SlideMenu } from 'react-burger-menu';
 import MobileTray from './components/MobileTray/MobileTray.js';
 
@@ -40,20 +40,20 @@ const App = () => {
   });
 
   const renderNormal = () => (
-    <div class="main-div">
-      <div class="sidebar">
+    <div className="main-div">
+      <div className="sidebar">
         <Logo/>
         <SidebarMenu/>
-        <SocialMediaTray/>
+        <SocialMediaIcons/>
       </div>
-      <div class="page-content">
+      <div className="page-content">
         <PageContent/>
       </div>
     </div>
   );
 
   const renderMobile = () => (
-    <div class="main-div-mobile">
+    <div className="main-div-mobile">
       <SlideMenu right={true}
                   isOpen={slideMenuOpen}
                   onStateChange={(state) => setSlideMenuOpen(state.isOpen)}

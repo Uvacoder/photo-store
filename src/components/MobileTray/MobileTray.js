@@ -1,5 +1,5 @@
 import { Button, Icon } from 'rsuite';
-import SocialMediaTray from '../SocialMediaTray/SocialMediaTray.js';
+import SocialMediaIcons from '../SocialMediaTray/SocialMediaIcons.js';
 import './MobileTray.css';
 
 const MobileTray = ({
@@ -9,7 +9,7 @@ const MobileTray = ({
     <div class="phantom-tray"/>
     <div class="mobile-tray-container">
       <div class="sm-icons-container">
-        <SocialMediaTray/>
+        <SocialMediaIcons />
       </div>
       <div class="bm-bars-container">
         <Button appearance="subtle"

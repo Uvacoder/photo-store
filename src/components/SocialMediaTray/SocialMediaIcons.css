@@ -1,0 +1,19 @@
+@import '../../colors.css';
+
+.social-media-icon {
+  width: 32px;
+  fill: var(--social-media-icon-link-color);
+}
+
+.social-media-icon:hover {
+  fill: var(--social-media-icon-link-color-hover);
+}
+
+.icon-container {
+  margin: 5px;
+  display: flex;
+}
+
+.icon-container > * {
+  margin: 5px;
+}
