@@ -5,7 +5,7 @@ const Form = {
   Row: ({
     children
   }) => (
-    <div className="form-row">{children}</div>
+    <div className="form-row justify-content-center">{children}</div>
   ),
   Group: ({
     children,

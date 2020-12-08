@@ -154,16 +154,18 @@ const ContactForm = () => {
           </textarea>
         </Group>
       </Row>
-      {submitEnabled() ? (
-        <button type="submit" className="btn btn-primary">
-          Submit Message
-        </button>
-      ) : (
-        <button type="submit" className="btn btn-primary"
-                disabled aria-disabled="true">
-          Submit Message
-        </button>
-      )}
+      <Row>
+        {submitEnabled() ? (
+          <button type="submit" className="btn btn-primary">
+            Submit Message
+          </button>
+        ) : (
+          <button type="submit" className="btn btn-primary"
+                  disabled aria-disabled="true">
+            Submit Message
+          </button>
+        )}
+      </Row>
     </form>
   );
 }
