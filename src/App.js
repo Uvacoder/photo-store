@@ -42,8 +42,7 @@ const App = () => {
   const renderNormal = () => (
     <div className="main-div">
       <div className="sidebar">
-        <Logo/>
-        <SidebarMenu/>
+        <SidebarMenu isMobile={isMobile} />
         <SocialMediaIcons/>
       </div>
       <div className="page-content">

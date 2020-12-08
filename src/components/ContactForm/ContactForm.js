@@ -1,7 +1,6 @@
 import { useReducer, useRef } from 'react';
 import Form from '../../components/FormHelpers/index.js';
 import Cleave from 'cleave.js/react';
-// Formatting for US phone numbers - lib has separate imports for each country
 import 'cleave.js/dist/addons/cleave-phone.us';
 import formattedEmail from './formattedEmail.js';
 const { Row, Group } = Form;
@@ -51,7 +50,7 @@ const ContactForm = () => {
       method: 'post',
       mode: 'no-cors',
       body: JSON.stringify({
-        to: [state.emailAddress],
+        to: state.emailAddress,
         subject: "Atelier Mistral Inquiry Confirmation",
         body: {
           html: formattedEmail(state, true),

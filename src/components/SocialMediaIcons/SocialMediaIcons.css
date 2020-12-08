@@ -1,17 +1,32 @@
 @import '../../global/colors.css';
 
-.social-media-icon {
+.sm-icon-div {
+  position: relative;
+  height: 32px;
+  width: 32px;
+}
+
+.sm-icon-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 32px;
   fill: var(--social-media-icon-link-color);
 }
 
-.social-media-icon:hover {
+.sm-hover-svg {
   fill: var(--social-media-icon-link-color-hover);
+  display: none;
+}
+
+.sm-icon-div:hover .sm-hover-svg {
+  display: unset;
 }
 
 .icon-container {
   margin: 5px;
   display: flex;
+  justify-content: center;
 }
 
 .icon-container > * {

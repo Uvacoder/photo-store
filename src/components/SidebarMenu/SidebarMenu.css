@@ -1,0 +1,16 @@
+.sidebar-spacer {
+  height: 24px;
+}
+
+.contact {
+  text-align: center;
+  margin: 0;
+}
+
+.phone {
+  font-size: 0.75rem;
+}
+
+.email {
+  font-size: 0.65rem;
+}

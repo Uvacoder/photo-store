@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SocialMediaIcons.css';
-import useHover from 'react-use-hover';
-// import useHover from '../../hooks/useHover';
 
 import { ReactComponent as FacebookIcon } from '../../assets/images/icons/Facebook.svg';
 import { ReactComponent as FacebookIconHover } from '../../assets/images/icons/FacebookInverted.svg';
@@ -14,29 +12,21 @@ const IconLink = ({
   href,
   icon,
   iconHover
-}) => {
-  
-  const [isHovered, hoverProps] = useHover();
-
-  const iconProps = {
-    className: "social-media-icon",
-    // ...hoverProps
-  }
-  const Icon = () => React.createElement(icon, iconProps);
-  const IconHover = () => iconHover ? React.createElement(iconHover, iconProps) : <Icon/>;
-
-  return (
-    <a  href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-      
-      <div {...hoverProps} style={{width:32, height:32}}>
-        {isHovered ? <IconHover/> : <Icon/>}
-      </div>
-    </a>
-  );
-}
+}) => (
+  <a  href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+  >
+    <div className="sm-icon-div">
+      {React.createElement(icon, {
+        className: "sm-icon-svg"
+      })}
+      {React.createElement(iconHover, {
+        className: "sm-icon-svg sm-hover-svg"
+      })}
+    </div>
+  </a>
+);
 
 const SocialMediaIcons = () => (
   <div className="icon-container">
