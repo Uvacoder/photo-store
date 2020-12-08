@@ -1,4 +1,3 @@
-import { Button, Icon } from 'rsuite';
 import SocialMediaIcons from '../SocialMediaTray/SocialMediaIcons.js';
 import './MobileTray.css';
 
@@ -12,11 +11,11 @@ const MobileTray = ({
         <SocialMediaIcons />
       </div>
       <div class="bm-bars-container">
-        <Button appearance="subtle"
+        {/* TODO<Button appearance="subtle"
                 onClick={onBurgerClick}
         >
           <Icon class="bm-bars" icon="bars" size="2x" />
-        </Button>
+        </Button> */}
       </div>
     </div>
   </div>

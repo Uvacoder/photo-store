@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import Home from './Home/Home.js';
 import Portfolio from './Portfolio/Portfolio.js';
+import Contact from './Contact/Contact.js';
 
 const PageContent = () => (
   <div>
@@ -13,7 +14,7 @@ const PageContent = () => (
     <Route path='/portfolio/category2' component={() => <Portfolio photoGroup="cp"/>} />
     <Route path='/fieldnotes'          component={() => <h3 style={{textAlign: "center"}}>Field Notes</h3>} />
     <Route path='/about'               component={() => <h3 style={{textAlign: "center"}}>About</h3>} />
-    <Route path='/contact'             component={() => <h3 style={{textAlign: "center"}}>Contact</h3>} />
+    <Route path='/contact'             component={Contact} />
   </div>
 )
 
