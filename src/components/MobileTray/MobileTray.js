@@ -1,4 +1,4 @@
-import SocialMediaIcons from '../SocialMediaTray/SocialMediaIcons.js';
+import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons.js';
 import './MobileTray.css';
 
 const MobileTray = ({

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SocialMediaIcons.css';
-// import useHover from 'react-use-hover';
-import useHover from '../../hooks/useHover';
+import useHover from 'react-use-hover';
+// import useHover from '../../hooks/useHover';
 
 import { ReactComponent as FacebookIcon } from '../../assets/images/icons/Facebook.svg';
 import { ReactComponent as FacebookIconHover } from '../../assets/images/icons/FacebookInverted.svg';

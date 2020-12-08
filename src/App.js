@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Logo from './components/Logo/Logo.js'
 import SidebarMenu from './components/SidebarMenu/SidebarMenu.js';
 import PageContent from './pages';
-import SocialMediaIcons from './components/SocialMediaTray/SocialMediaIcons.js';
+import SocialMediaIcons from './components/SocialMediaIcons/SocialMediaIcons.js';
 import { slide as SlideMenu } from 'react-burger-menu';
 import MobileTray from './components/MobileTray/MobileTray.js';
 
