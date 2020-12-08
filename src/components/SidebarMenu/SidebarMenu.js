@@ -15,8 +15,6 @@ const SidebarMenu = ({
       <SidebarItem to="/home"><Logo /></SidebarItem>
     }
 
-    <div className="sidebar-spacer" />
-
     <SidebarItem to="/engagements">Engagements</SidebarItem>
     <SidebarItem to="/maternity">Maternity</SidebarItem>
     <SidebarItem to="/family">Family</SidebarItem>
