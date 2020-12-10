@@ -1,4 +1,4 @@
-@import '../../global/colors.css';
+@import '../../global';
 
 .burger-container {
   display: inline-block;

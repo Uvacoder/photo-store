@@ -9,41 +9,58 @@ const SidebarMenu = ({
   className,
   onSelect,
   isMobile,
-}) => (
+}) => {
 
-  <div {...{className}}>
-    <div className="scroll">
-      {!isMobile &&
-        <SidebarItem to="/home"><Logo /></SidebarItem>
-      }
+  const cl = isMobile
+    ? "sidebar-item-container sic-mobile"
+    : "sidebar-item-container"
+  ;
 
-      <SidebarItem to="/engagements">Engagements</SidebarItem>
-      <SidebarItem to="/maternity">Maternity</SidebarItem>
-      <SidebarItem to="/family">Family</SidebarItem>
-      <SidebarItem to="/portraits">Portraits</SidebarItem>
-      <SidebarItem to="/adventurelifestyle">Adventure + Lifestyle</SidebarItem>
+  return (
+    <div {...{className}}>
+      <div className={isMobile ? "scroll-mobile" : "scroll"}>
+        {isMobile ? (
+          <React.Fragment>
+            <div className="sidebar-spacer" />
+            <SidebarItem className={cl} to="/home">Home</SidebarItem>
+          </React.Fragment>
+        ) : (
+          <SidebarItem className={cl} to="/home"><Logo /></SidebarItem>
+        )}
 
-      <div className="sidebar-spacer" />
+        <SidebarItem className={cl} to="/engagements">Engagements</SidebarItem>
+        <SidebarItem className={cl} to="/maternity">Maternity</SidebarItem>
+        <SidebarItem className={cl} to="/family">Family</SidebarItem>
+        <SidebarItem className={cl} to="/portraits">Portraits</SidebarItem>
+        <SidebarItem className={cl} to="/adventurelifestyle">Adventure + Lifestyle</SidebarItem>
 
-      <SidebarItem to="/ourprocess">Our Process</SidebarItem>
-      <SidebarItem to="/about">Behind the Lens</SidebarItem>
-      <SidebarItem to="/recognition">Recognition</SidebarItem>
-      <SidebarItem to="/awards">Awards</SidebarItem>
-      <SidebarItem to="/contact">Get In Touch</SidebarItem>
+        <div className="sidebar-spacer" />
 
-      <div className="sidebar-spacer" />
+        <SidebarItem className={cl} to="/ourprocess">Our Process</SidebarItem>
+        <SidebarItem className={cl} to="/about">Behind the Lens</SidebarItem>
+        <SidebarItem className={cl} to="/recognition">Recognition</SidebarItem>
+        <SidebarItem className={cl} to="/awards">Awards</SidebarItem>
+        <SidebarItem className={cl} to="/contact">Get In Touch</SidebarItem>
 
-      <p className="contact phone">{contactInfo.phone}</p>
-      <p className="contact email">{contactInfo.email}</p>
+        <div className="sidebar-spacer" />
 
-      {!isMobile &&
-        <div className="sidebar-icons-container">
-          <SocialMediaIcons />
-        </div>
-      }
-      <div />
+        {!isMobile &&
+          <React.Fragment>
+            <p className="contact phone">{contactInfo.phone}</p>
+            <p className="contact email">{contactInfo.email}</p>
+            <div className="sidebar-icons-container">
+              <SocialMediaIcons />
+            </div>
+          </React.Fragment>
+        }
+
+        {isMobile &&
+          <div className="mobile-centering-spacer" />
+        }
+
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default SidebarMenu;

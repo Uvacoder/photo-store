@@ -51,6 +51,7 @@ const App = () => {
                  onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
       >
         <SidebarMenu className="sidebar-mobile"
+                     isMobile={isMobile}
                      onSelect={() => setSlideMenuOpen(false)}
         />
       </SlideMenu>

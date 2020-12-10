@@ -1,10 +1,8 @@
-:root {
-  --tray-height: 51px;
-}
+@import '../../global';
 
 .phantom-tray {
   display: block;
-  height: var(--tray-height);
+  height: var(--mobile-tray-height);
   width: 100%;
 }
 
@@ -17,7 +15,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  height: var(--tray-height);
+  height: var(--mobile-tray-height);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 56px;
