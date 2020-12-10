@@ -1,0 +1,39 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  AWS_REGION: $AWS_REGION
+  S3_BUCKET_STAGING: $S3_BUCKET_NAME
+  CDN_DISTRIBUTION_ID: $CDN_DISTRIBUTION_ID
+
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - node_modules/
+
+Build:
+  stage: build
+  only:
+    - master
+    - development
+  image: node:11
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+    - build/
+    expire_in: 1 day
+
+DeployStaging:
+  stage: deploy
+  only: development
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  when: manual
+  before_script:
+    - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
+  script:
+      aws s3 cp build/ s3://$S3_BUCKET_STAGING/ --recursive --include "*"
