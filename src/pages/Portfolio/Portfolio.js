@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Gallery from 'react-photo-gallery';
 import GalleryView from '../../components/GalleryView/GalleryView.js';
 import { getPhotos } from './photos.js';
@@ -12,6 +12,14 @@ const Portfolio = ({
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const {thumbnails, images} = getPhotos(photoGroup);
+
+  useEffect(() => {
+    // Preload fullsize images
+    images.forEach(image => {
+      const img = new Image();
+      img.src = image;
+    })
+  })
 
   const fade = () => document.body.className += ' fade';
   const unfade = () => document.body.className = document.body.className.replace(' fade', '');
