@@ -52,8 +52,8 @@ const Portfolio = ({
                 direction={"column"}
                 onClick={isMobile
                   ? (evt, photo) => openGallery(photo.index)
-                  : () => {}
-                }
+                  : undefined
+              }
       />
     ) : (
       // Full Screen Gallery
