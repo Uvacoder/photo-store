@@ -1,4 +1,5 @@
 :root {
+  --site-background-color: white;
   --link-color: gray;
   --link-color-hover: black;
   --link-color-selected: black;

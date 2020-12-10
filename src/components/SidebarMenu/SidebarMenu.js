@@ -8,7 +8,7 @@ import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
 const SidebarMenu = ({
   className,
   onSelect,
-  isMobile
+  isMobile,
 }) => (
 
   <div {...{className}}>
