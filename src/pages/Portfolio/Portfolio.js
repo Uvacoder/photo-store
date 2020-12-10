@@ -5,7 +5,8 @@ import { getPhotos } from './photos.js';
 import './Portfolio.css';
 
 const Portfolio = ({
-  photoGroup
+  photoGroup,
+  isMobile
 }) => {
 
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -49,7 +50,10 @@ const Portfolio = ({
       // Photo Grid
       <Gallery photos={thumbnails}
                 direction={"column"}
-                onClick={(evt, photo) => openGallery(photo.index)}
+                onClick={isMobile
+                  ? (evt, photo) => openGallery(photo.index)
+                  : () => {}
+                }
       />
     ) : (
       // Full Screen Gallery
