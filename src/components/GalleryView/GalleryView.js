@@ -36,8 +36,8 @@ const GalleryView = ({
               initialSlide={initialIndex}
       >
         {images.map((image, i) => (
-          <img src={image}
-              onClick={() => sliderRef.current?.slickGoTo(i)}
+          <img src={image} alt=""
+               onClick={() => sliderRef.current?.slickGoTo(i)}
           >
           </img>
         ))}
