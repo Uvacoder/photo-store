@@ -37,7 +37,7 @@ DeployStaging:
   before_script:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
   script:
-      aws s3 cp build/ s3://$S3_BUCKET_STAGING/ --recursive --include "*"
+      aws s3 sync build s3://$S3_BUCKET_STAGING
 
 DeployProduction:
   stage: deploy
@@ -48,4 +48,4 @@ DeployProduction:
   before_script:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
   script:
-      aws s3 cp build/ s3://$S3_BUCKET_PRODUCTION/ --recursive --include "*"
+      aws s3 sync build s3://$S3_BUCKET_PRODUCTION
