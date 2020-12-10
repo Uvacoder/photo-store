@@ -7,12 +7,12 @@ const MobileTray = ({
   menuOpen
 }) => (
   <div>
-    <div class="phantom-tray"/>
-    <div class="mobile-tray-container">
-      <div class="sm-icons-container">
+    <div className="phantom-tray"/>
+    <div className="mobile-tray-container">
+      <div className="sm-icons-container">
         <SocialMediaIcons />
       </div>
-      <div class="bm-bars-container">
+      <div className="bm-bars-container">
         <BurgerIcon isOpen={menuOpen}
                     onClick={onBurgerClick}
         />

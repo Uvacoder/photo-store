@@ -15,7 +15,7 @@ const Portfolio = ({
   const {thumbnails, images} = getPhotos(photoGroup);
 
   useEffect(() => {
-    // Preload fullsize images
+    // Preload fullsize images for fullscreen gallery view
     images.forEach(image => {
       const img = new Image();
       img.src = image;
@@ -51,9 +51,9 @@ const Portfolio = ({
       <Gallery photos={thumbnails}
                 direction={"column"}
                 onClick={isMobile
-                  ? (evt, photo) => openGallery(photo.index)
-                  : undefined
-              }
+                  ? undefined
+                  : (evt, photo) => openGallery(photo.index)
+                }
       />
     ) : (
       // Full Screen Gallery
