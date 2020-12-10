@@ -2,8 +2,6 @@ import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons.js';
 import './MobileTray.css';
 import BurgerIcon from '../BurgerIcon/BurgerIcon.js';
 
-const test = () => console.log("test");
-
 const MobileTray = ({
   onBurgerClick,
   menuOpen
