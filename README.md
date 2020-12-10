@@ -1,6 +1,6 @@
 This repo is hosted on both GitLab and GitHub.  Issue tracking and CI/CD are managed on GitLab.
- - `gitlab.com/cameronfyfe/er-photosite`  
- - `github.com/cameronfyfe/er-photosite`  
+ - [gitlab.com/cameronfyfe/er-photosite](gitlab.com/cameronfyfe/er-photosite) 
+ - [github.com/cameronfyfe/er-photosite](github.com/cameronfyfe/er-photosite) 
 
 # Development
 
