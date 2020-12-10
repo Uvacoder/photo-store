@@ -32,7 +32,7 @@ const SocialMediaIcons = () => (
   <div className="icon-container">
     <IconLink icon={FacebookIcon}
               iconHover={FacebookIconHover}
-              href="https://www.facebook.com/atelier.mistral.photo/"
+              href="https://www.facebook.com/atelier.mistral.photography/"
     />
     <IconLink icon={InstagramIcon}
               iconHover={InstagramIconHover}
