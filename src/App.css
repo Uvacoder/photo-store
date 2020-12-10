@@ -2,22 +2,19 @@
 
 /* Main page layout divs */
 .main-div {
-  z-index: -1;
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "sidebar page-content";
+  height: 100vh;
+  width: 100vw;
 }
 
 .sidebar {
-  grid-area: "sidebar";
-  vertical-align: top;
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  overflow: hidden;
 }
 
 .page-content {
-  grid-area: "page-content";
+  margin-left: 200px;
 }
 
 /* Position and sizing of burger button */

@@ -5,8 +5,10 @@ import Home from './Home/Home.js';
 import Portfolio from './Portfolio/Portfolio.js';
 import Contact from './Contact/Contact.js';
 
-const PageContent = () => (
-  <div>
+const PageContent = ({
+  className
+}) => (
+  <div {...{className}}>
     <Route exact path='/'              component={() => <Redirect to='/home' />} />
     <Route path='/home'                component={Home} />
     <Route path='/engagements'         component={() => <Portfolio photoGroup="va"/>} />
