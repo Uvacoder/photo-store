@@ -14,6 +14,10 @@
   background-color: var(--site-background-color);
 }
 
+.sidebar-mobile {
+  background-color: var(--site-background-color);
+}
+
 .page-content {
   margin-left: 200px;
 }

@@ -1,5 +1,5 @@
 :root {
-  --tray-height: 50px;
+  --tray-height: 51px;
 }
 
 .phantom-tray {
@@ -9,7 +9,7 @@
 }
 
 .mobile-tray-container {
-  z-index: 1;
+  z-index: 9000;
   background-color: white;
   border-color: gray;
   border-top-style: solid;
@@ -20,7 +20,7 @@
   height: var(--tray-height);
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 50px;
+  grid-template-columns: 1fr 56px;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas:
@@ -29,19 +29,17 @@
 
 .sm-icons-container {
   grid-area: "sm-icons";
-  height: 100%;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.sm-icons-container div {
+  margin-left: 4px;
 }
 
 .bm-bars-container {
   grid-area: "bm-bars";
-  height: 100%;
-  vertical-align: middle;
-}
-
-.bm-bars {
-  margin-left: auto;
-  margin-right: 10px;
-  fill: red;
-  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,8 +1,12 @@
 import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons.js';
 import './MobileTray.css';
+import BurgerIcon from '../BurgerIcon/BurgerIcon.js';
+
+const test = () => console.log("test");
 
 const MobileTray = ({
-  onBurgerClick
+  onBurgerClick,
+  menuOpen
 }) => (
   <div>
     <div class="phantom-tray"/>
@@ -11,11 +15,9 @@ const MobileTray = ({
         <SocialMediaIcons />
       </div>
       <div class="bm-bars-container">
-        {/* TODO<Button appearance="subtle"
-                onClick={onBurgerClick}
-        >
-          <Icon class="bm-bars" icon="bars" size="2x" />
-        </Button> */}
+        <BurgerIcon isOpen={menuOpen}
+                    onClick={onBurgerClick}
+        />
       </div>
     </div>
   </div>

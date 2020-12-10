@@ -47,13 +47,17 @@ const App = () => {
   const renderMobile = () => (
     <div className="main-div-mobile">
       <SlideMenu right={true}
-                  isOpen={slideMenuOpen}
-                  onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
+                 isOpen={slideMenuOpen}
+                 onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
       >
-        <SidebarMenu onSelect={() => setSlideMenuOpen(false)} />
+        <SidebarMenu className="sidebar-mobile"
+                     onSelect={() => setSlideMenuOpen(false)}
+        />
       </SlideMenu>
       <PageContent/>
-      <MobileTray onBurgerClick={() => setSlideMenuOpen(true)} />
+      <MobileTray onBurgerClick={() => {console.log(slideMenuOpen); setSlideMenuOpen(!slideMenuOpen)}}
+                  menuOpen={slideMenuOpen}
+      />
     </div>
   );
 
