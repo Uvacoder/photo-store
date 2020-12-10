@@ -1,0 +1,40 @@
+.slick-slider {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.slick-track {
+  display: flex !important;
+  height: 100vh;
+}
+
+.slick-slide {
+  display: flex !important;
+  height: auto !important;
+  background-color: white;
+}
+
+.slick-slide div {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.slick-slide div img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.gallery-close {
+  z-index: 3;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  height: 50px;
+  width: 40px;
+  font-size: 40px;
+}

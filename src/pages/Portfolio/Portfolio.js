@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Gallery from 'react-photo-gallery';
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
+import GalleryView from '../../components/GalleryView/GalleryView.js';
 import { getPhotos } from './photos.js';
+import './Portfolio.css';
 
 const Portfolio = ({
-  photoGroup
+  photoGroup,
+  isMobile
 }) => {
 
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -13,33 +14,55 @@ const Portfolio = ({
 
   const {thumbnails, images} = getPhotos(photoGroup);
 
-  const photoIndexNext = (photoIndex + 1) % images.length;
-  const photoIndexPrevious = (photoIndex - 1 + images.length) % images.length;
+  useEffect(() => {
+    // Preload fullsize images for fullscreen gallery view
+    images.forEach(image => {
+      const img = new Image();
+      img.src = image;
+    })
+  })
+
+  const fade = () => document.body.className += ' fade';
+  const unfade = () => document.body.className = document.body.className.replace(' fade', '');
+
+  const openGallery = index => {
+    fade();
+    setTimeout(() => {
+      setPhotoIndex(index);
+      if (!galleryOpen) {
+        setGalleryOpen(true);
+      }
+    }, 200);
+  }
+
+  const closeGallery = () => {
+    fade();
+    setTimeout(() => {
+      setGalleryOpen(false);
+      setTimeout(() => {
+        unfade();
+      }, 100);
+    }, 200);
+  }
 
   return (
-    <div>
-      {/* Photo Grid */}
+    !galleryOpen ? (
+      // Photo Grid
       <Gallery photos={thumbnails}
                 direction={"column"}
-                onClick={(evt, photo) => {
-                  setPhotoIndex(photo.index);
-                  if (!galleryOpen) {
-                    setGalleryOpen(true);
-                  }
-                }}
+                onClick={isMobile
+                  ? undefined
+                  : (evt, photo) => openGallery(photo.index)
+                }
       />
-      {/* Lightbox Gallery Popup */}
-      {galleryOpen && (
-        <Lightbox
-          mainSrc={images[photoIndex]}
-          nextSrc={images[photoIndexNext]}
-          prevSrc={images[photoIndexPrevious]}
-          onCloseRequest={() => setGalleryOpen(false)}
-          onMovePrevRequest={() => setPhotoIndex(photoIndexPrevious)}
-          onMoveNextRequest={() => setPhotoIndex(photoIndexNext)}
-        />
-      )}
-    </div>
+    ) : (
+      // Full Screen Gallery
+      <GalleryView images={images}
+                   initialIndex={photoIndex}
+                   closeGallery={closeGallery}
+                   onLoad={unfade}
+      />
+    )
   );
 }
 

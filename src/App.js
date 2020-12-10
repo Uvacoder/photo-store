@@ -40,20 +40,26 @@ const App = () => {
   const renderNormal = () => (
     <div className="main-div">
       <SidebarMenu className="sidebar" isMobile={isMobile} />
-      <PageContent className="page-content" />
+      <PageContent className="page-content" isMobile={isMobile} />
     </div>
   );
 
   const renderMobile = () => (
     <div className="main-div-mobile">
       <SlideMenu right={true}
-                  isOpen={slideMenuOpen}
-                  onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
+                 isOpen={slideMenuOpen}
+                 onStateChange={(state) => setSlideMenuOpen(state.isOpen)}
+                 customBurgerIcon={false}
+                 customCrossIcon={false}
       >
-        <SidebarMenu onSelect={() => setSlideMenuOpen(false)} />
+        <SidebarMenu className="sidebar-mobile"
+                     isMobile={isMobile}
+        />
       </SlideMenu>
-      <PageContent/>
-      <MobileTray onBurgerClick={() => setSlideMenuOpen(true)} />
+      <PageContent isMobile={isMobile} />
+      <MobileTray onBurgerClick={() => setSlideMenuOpen(!slideMenuOpen)}
+                  menuOpen={slideMenuOpen}
+      />
     </div>
   );
 
