@@ -43,7 +43,6 @@ const App = () => {
     <div className="main-div">
       <div className="sidebar">
         <SidebarMenu isMobile={isMobile} />
-        <SocialMediaIcons/>
       </div>
       <div className="page-content">
         <PageContent/>

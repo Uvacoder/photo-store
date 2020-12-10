@@ -3,6 +3,7 @@ import React from 'react';
 import Logo from '../Logo/Logo';
 import SidebarItem from './sidebar-components/SidebarItem';
 import { contactInfo } from '../../global';
+import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
 
 const SidebarMenu = ({
   onSelect,
@@ -33,6 +34,12 @@ const SidebarMenu = ({
 
     <p className="contact phone">{contactInfo.phone}</p>
     <p className="contact email">{contactInfo.email}</p>
+
+    {!isMobile &&
+      <div className="sm-icons-container">
+        <SocialMediaIcons />
+      </div>
+    }
     
   </div>
 );

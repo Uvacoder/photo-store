@@ -1,6 +1,12 @@
 @import '../../global/colors.css';
 
+.icon-container {
+  width: 126px;
+  display: flex;
+}
+
 .sm-icon-div {
+  margin: 5px;
   position: relative;
   height: 32px;
   width: 32px;
@@ -21,14 +27,4 @@
 
 .sm-icon-div:hover .sm-hover-svg {
   display: unset;
-}
-
-.icon-container {
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-}
-
-.icon-container > * {
-  margin: 5px;
 }
