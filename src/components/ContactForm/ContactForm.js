@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect, useRef } from 'react';
+import React, { useState, useReducer, useRef } from 'react';
 import { contactInfo } from '../../global';
 import Form from '../../components/FormHelpers/index.js';
 import Cleave from 'cleave.js/react';
@@ -68,7 +68,7 @@ const ContactForm = () => {
       })
     })
     .then(response => {
-      if (response.status != 200) {
+      if (response.status !== 200) {
         submitFailed();
       } else {
         response.json().then(data => {
