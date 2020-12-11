@@ -97,11 +97,8 @@ const ContactForm = () => {
       className: "btn btn-primary",
     }
     if (!submitEnabled()) {
-      props = {
-        ...props,
-        disabled: true,
-        ariaDisabled: "true"
-      }
+      props.disabled = true;
+      props.ariaDisabled = true;
     }
     return isSubmitting ? (
       <button {...props}>
