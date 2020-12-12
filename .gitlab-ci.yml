@@ -3,6 +3,7 @@ stages:
   - deploy
 
 variables:
+  AWS_IMAGE: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
@@ -31,9 +32,9 @@ Build:
 
 DeployStaging:
   stage: deploy
+  image: $AWS_IMAGE
   only:
     - development
-  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   before_script:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
   script:
@@ -41,9 +42,9 @@ DeployStaging:
 
 DeployProduction:
   stage: deploy
+  image: $AWS_IMAGE
   only:
     - master
-  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   when: manual
   before_script:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
