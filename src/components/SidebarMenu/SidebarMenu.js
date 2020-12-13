@@ -1,23 +1,9 @@
 import './SidebarMenu.css';
 import React, { useState } from 'react';
 import Logo from '../Logo/Logo';
-import SidebarItem from './sidebar-components/SidebarItem';
+import Sidebar, { SidebarItem } from './sidebar-components/Sidebar';
 import { contactInfo } from '../../global';
 import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
-
-const Sidebar = ({
-  children,
-  isMobile,
-  onPick
-}) => {
-  console.log(children);
-  console.log(React.Children.toArray(children));
-  return (
-    <React.Fragment>
-      {React.Children.toArray(children).map(c => React.cloneElement(c, {isMobile, onPick}))}
-    </React.Fragment>
-  );
-}
 
 const SidebarMenu = ({
   className,
