@@ -29,7 +29,6 @@ const GalleryView = ({
               swipe={true}
               infinite={true}
               speed={750}
-              adaptiveHeight={false}
               variableWidth={true}
               centerMode={true}
               slidesToShow={1}

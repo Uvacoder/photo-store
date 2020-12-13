@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FadeLoadImage, GridImage } from '../../components';
+import { GridImage, SlideshowImage, GalleryView } from '../../components';
 import Gallery from 'react-photo-gallery';
-import { GalleryView } from '../../components';
 import { getPhotos } from './photos.js';
 import { preloadImage } from '../../util';
 import './Portfolio.css';
@@ -44,30 +43,31 @@ const Portfolio = ({
   }
 
   return (
-    !galleryOpen ? (
-      // Photo Grid
+    <React.Fragment>
+      {/* Photo Grid */}
       <Gallery 
         photos={thumbnails}
         direction={"column"}
         renderImage={(props) => <GridImage {...props} isMobile={isMobile} openGallery={openGallery} />}
       />
-    ) : (
-      // Full Screen Gallery
-      <GalleryView
-        initialIndex={photoIndex}
-        closeGallery={closeGallery}
-        onLoad={unfade}
-        onSlideChange={(curSlide, nextSlide) => {
-          const arrLen = images.length;
-          for (var i=1; i<=2; i++) {
-            preloadImage(images[ (nextSlide + i)          % arrLen ]);
-            preloadImage(images[ (nextSlide + arrLen - i) % arrLen ]);
-          }
-        }}
-      >
-        {images.map((image => <FadeLoadImage src={image} />))}
-      </GalleryView>
-    )
+      {/* Full Screen Slide Show Gallery */}
+      {galleryOpen &&
+        <GalleryView
+          initialIndex={photoIndex}
+          closeGallery={closeGallery}
+          onLoad={unfade}
+          onSlideChange={(curSlide, nextSlide) => {
+            const arrLen = images.length;
+            for (var i=1; i<=2; i++) {
+              preloadImage(images[ (nextSlide + i)          % arrLen ]);
+              preloadImage(images[ (nextSlide + arrLen - i) % arrLen ]);
+            }
+          }}
+        >
+          {images.map((image => <SlideshowImage src={image} />))}
+        </GalleryView>
+      }
+    </React.Fragment>
   );
 }
 
