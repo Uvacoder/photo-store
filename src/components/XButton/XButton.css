@@ -5,6 +5,7 @@
   background-color: white;
   opacity: 0.6;
   transition: opacity 0.2s;
+  cursor: pointer;
 }
 
 .x-btn-circle:hover {

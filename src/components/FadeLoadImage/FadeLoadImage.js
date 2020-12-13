@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { ReactiveImage } from '../';
 
-const FadeLoadImage = (
-  props
-) => {
+const FadeLoadImage = ({
+  loadCheckInterval,
+  ...props
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const newProps = {
@@ -17,7 +18,7 @@ const FadeLoadImage = (
 
   return (
     <ReactiveImage
-      loadCheckInterval={props.loadCheckInterval || 50}
+      loadCheckInterval={loadCheckInterval || 50}
       onImageLoad={() => setIsLoaded(true)}
       {...newProps}
     />            

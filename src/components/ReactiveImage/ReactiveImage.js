@@ -1,16 +1,18 @@
 import { useRef } from 'react';
 
-const ReactiveImage = (
-  props
-) => {
+const ReactiveImage = ({
+  loadCheckInterval,
+  onImageLoad,
+  ...props
+}) => {
 
   const ref = useRef(null);
 
-  const {
-    loadCheckInterval,
-    onImageLoad,
-    ...newProps
-  } = props;
+  const newProps = {
+    alt: "",
+    ...props,
+    ref
+  }
 
   const checkIsLoaded = delay => {
     setTimeout(() => {
@@ -30,7 +32,7 @@ const ReactiveImage = (
   checkIsLoaded(loadCheckInterval || 10);
 
   return (
-    <img alt="" {...newProps} ref={ref} />        
+    <img {...newProps} />        
   );
 }
 
