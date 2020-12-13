@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { FadeLoadImage, GridImage } from '../../components';
 import Gallery from 'react-photo-gallery';
-import GalleryView from '../../components/GalleryView/GalleryView.js';
+import { GalleryView } from '../../components';
 import { getPhotos } from './photos.js';
+import { preloadImage } from '../../util';
 import './Portfolio.css';
-
-const preloadImage = (url) => {
-  const img = new Image();
-  img.src = url;
-}
 
 const Portfolio = ({
   photoGroup,
   isMobile
 }) => {
-
+  
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
@@ -52,32 +49,11 @@ const Portfolio = ({
       <Gallery 
         photos={thumbnails}
         direction={"column"}
-        renderImage={props => (
-          <img
-            alt=""
-            src={props.photo.src}
-            style={{
-              display: "block",
-              position: "absolute",
-              margin: props.margin,
-              top: props.top,
-              left: props.left,
-              height: props.photo.height,
-              width: props.photo.width,
-              cursor: "pointer"
-            }}
-            onMouseEnter={() => preloadImage(props.photo.src.replace("thumb", "full"))}
-            onClick={isMobile
-              ? undefined
-              : (evt, photo) => openGallery(props.index)
-            }
-          />
-        )}
+        renderImage={(props) => <GridImage {...props} isMobile={isMobile} openGallery={openGallery} />}
       />
     ) : (
       // Full Screen Gallery
       <GalleryView
-        images={images}
         initialIndex={photoIndex}
         closeGallery={closeGallery}
         onLoad={unfade}
@@ -88,7 +64,9 @@ const Portfolio = ({
             preloadImage(images[ (nextSlide + arrLen - i) % arrLen ]);
           }
         }}
-      />
+      >
+        {images.map((image => <FadeLoadImage src={image} />))}
+      </GalleryView>
     )
   );
 }

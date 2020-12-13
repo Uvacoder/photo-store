@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './GalleryView.css';
 
 const GalleryView = ({
-  images,
+  children,
   initialIndex,
   closeGallery,
   onLoad,
@@ -36,21 +36,16 @@ const GalleryView = ({
               slidesToScroll={1}
               initialSlide={initialIndex}
               beforeChange={onSlideChange}
-              lazyLoad="ondemand"
       >
-        {images.map((image, i) => (
-          <img src={image} alt=""
-               onClick={() => sliderRef.current?.slickGoTo(i)}
-          >
-          </img>
-        ))}
-
+        {React.Children.toArray(children).map((c, i) => React.cloneElement(c, {
+          ...c.props, onClick:() => sliderRef.current?.slickGoTo(i)
+        }))}
       </Slider>
       <button type="button" className="gallery-close close" aria-label="Close"
               onClick={closeGallery}>
         <span aria-hidden="true">&times;</span>
       </button>
-    </React.Fragment> 
+    </React.Fragment>
   );
 }
   
