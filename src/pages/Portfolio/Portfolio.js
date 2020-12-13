@@ -54,6 +54,7 @@ const Portfolio = ({
         direction={"column"}
         renderImage={props => (
           <img
+            alt=""
             src={props.photo.src}
             style={{
               display: "block",
