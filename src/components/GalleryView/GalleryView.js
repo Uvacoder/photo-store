@@ -8,7 +8,8 @@ const GalleryView = ({
   images,
   initialIndex,
   closeGallery,
-  onLoad
+  onLoad,
+  onSlideChange,
 }) => {
 
   const sliderRef = useRef(null);
@@ -34,6 +35,8 @@ const GalleryView = ({
               slidesToShow={1}
               slidesToScroll={1}
               initialSlide={initialIndex}
+              beforeChange={onSlideChange}
+              lazyLoad="ondemand"
       >
         {images.map((image, i) => (
           <img src={image} alt=""

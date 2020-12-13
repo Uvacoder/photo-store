@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Gallery from 'react-photo-gallery';
 import GalleryView from '../../components/GalleryView/GalleryView.js';
 import { getPhotos } from './photos.js';
 import './Portfolio.css';
+
+const preloadImage = (url) => {
+  const img = new Image();
+  img.src = url;
+}
 
 const Portfolio = ({
   photoGroup,
@@ -14,13 +19,9 @@ const Portfolio = ({
 
   const {thumbnails, images} = getPhotos(photoGroup);
 
-  useEffect(() => {
-    // Preload fullsize images for fullscreen gallery view
-    images.forEach(image => {
-      const img = new Image();
-      img.src = image;
-    })
-  })
+  // Preload all fullsize images
+  // TODO: remove once images layout in slider view doesn't get messed up by smart loading
+  useEffect(() => images.forEach(img => (new Image()).src = img));
 
   const fade = () => document.body.className += ' fade';
   const unfade = () => document.body.className = document.body.className.replace(' fade', '');
@@ -48,19 +49,44 @@ const Portfolio = ({
   return (
     !galleryOpen ? (
       // Photo Grid
-      <Gallery photos={thumbnails}
-                direction={"column"}
-                onClick={isMobile
-                  ? undefined
-                  : (evt, photo) => openGallery(photo.index)
-                }
+      <Gallery 
+        photos={thumbnails}
+        direction={"column"}
+        renderImage={props => (
+          <img
+            src={props.photo.src}
+            style={{
+              display: "block",
+              position: "absolute",
+              margin: props.margin,
+              top: props.top,
+              left: props.left,
+              height: props.photo.height,
+              width: props.photo.width,
+              cursor: "pointer"
+            }}
+            onMouseEnter={() => preloadImage(props.photo.src.replace("thumb", "full"))}
+            onClick={isMobile
+              ? undefined
+              : (evt, photo) => openGallery(props.index)
+            }
+          />
+        )}
       />
     ) : (
       // Full Screen Gallery
-      <GalleryView images={images}
-                   initialIndex={photoIndex}
-                   closeGallery={closeGallery}
-                   onLoad={unfade}
+      <GalleryView
+        images={images}
+        initialIndex={photoIndex}
+        closeGallery={closeGallery}
+        onLoad={unfade}
+        onSlideChange={(curSlide, nextSlide) => {
+          const arrLen = images.length;
+          for (var i=1; i<=2; i++) {
+            preloadImage(images[ (nextSlide + i)          % arrLen ]);
+            preloadImage(images[ (nextSlide + arrLen - i) % arrLen ]);
+          }
+        }}
       />
     )
   );
