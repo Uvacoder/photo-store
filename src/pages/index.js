@@ -6,6 +6,8 @@ import Portfolio from './Portfolio/Portfolio.js';
 import About from './About/About.js';
 import Contact from './Contact/Contact.js';
 
+import { ReactiveImageTestPage } from '../tests/ReactiveImageTestPage';
+
 const PageContent = ({
   className,
   isMobile
@@ -61,6 +63,9 @@ const PageContent = ({
     />
     <Route  path='/contact'
             component={Contact}
+    />
+    <Route  path='/reactiveimagetestpage'
+            component={ReactiveImageTestPage}
     />
   </div>
 )
