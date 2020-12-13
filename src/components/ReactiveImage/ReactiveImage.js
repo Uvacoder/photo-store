@@ -8,12 +8,6 @@ const ReactiveImage = ({
 
   const ref = useRef(null);
 
-  const newProps = {
-    alt: "",
-    ...props,
-    ref
-  }
-
   const checkIsLoaded = delay => {
     setTimeout(() => {
       const isLoadedNow =
@@ -32,7 +26,7 @@ const ReactiveImage = ({
   checkIsLoaded(loadCheckInterval || 10);
 
   return (
-    <img {...newProps} />        
+    <img alt="" {...props} ref={ref} />        
   );
 }
 
