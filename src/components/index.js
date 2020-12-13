@@ -11,3 +11,4 @@ export { default as ReactiveImage } from './ReactiveImage/ReactiveImage';
 export { default as SidebarMenu } from './SidebarMenu/SidebarMenu';
 export { default as SlideshowImage } from './SlideshowImage/SlideshowImage';
 export { default as SocialMediaIcons } from './SocialMediaIcons/SocialMediaIcons';
+export { default as XButton } from './XButton/XButton';

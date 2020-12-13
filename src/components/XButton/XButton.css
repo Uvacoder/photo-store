@@ -1,0 +1,37 @@
+.x-btn-circle {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.x-btn-circle:hover {
+  opacity: 0.8
+}
+
+.x-btn-circle > .x {
+  position: absolute;
+  left: 14%;
+  width: 70%;
+  top: 44%;
+  height: 12%;
+  background-color: #3f3f3f;
+  opacity: 1;
+  transition: background-color 0.3s;
+}
+
+.x-btn-circle:hover > .x {
+  background-color: black;
+}
+
+.x-btn-circle > .x-1 {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.x-btn-circle > .x-2 {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
