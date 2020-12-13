@@ -2,6 +2,20 @@
 
 .sidebar-item-container {
   text-align: right;
+  font-size: 1rem;
+}
+
+.sidebar-subitem-container {
+  font-size: 0.75rem;
+  height: 18px;
+  opacity: 1;
+  transition: height 0.4s ease,
+              opacity 0.4s ease;
+}
+
+.sidebar-subitem-hidden {
+  height: 0;
+  opacity: 0;
 }
 
 .sic-mobile {
@@ -11,6 +25,12 @@
 
 .sidebar-item-container a {
   margin-right: 25px;
+  transition: margin-right 0.2s ease;
+}
+
+.subitem-div-hidden {
+  height: 0px;
+  opacity: 0;
 }
 
 .sidebar-item-container a:link, a:visited {
@@ -25,8 +45,17 @@
 
 .sidebar-item-container a.active {
   text-decoration: none;
-  margin-right: 10px;
   color: var(--link-color-hover);
+  margin-right: 10px;
+}
+
+.sidebar-item-sub-header > a {
+  margin-right: 10px;
+}
+
+.sic-mobile {
+  height: unset;
+  opacity: 1;
 }
 
 .sic-mobile a {
