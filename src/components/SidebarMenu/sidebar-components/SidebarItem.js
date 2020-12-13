@@ -17,8 +17,8 @@ const SidebarItem = ({
     ? "sidebar-item-container sic-mobile"
     : "sidebar-item-container"
   ;
-  const clSubOpen = cl + " " + "sidebar-item-sub-header";
-  const clSub = cl + " " + "sidebar-subitem-container" + (isSubOpen ? "" : " "+"sidebar-subitem-hidden");
+  const clSubOpen = cl + " sidebar-item-sub-header";
+  const clSub = cl + " sidebar-subitem-container" + (isSubOpen ? "" : " sidebar-subitem-hidden");
 
   const clName = className || ((isSubHeader&&isSubOpen) ? clSubOpen : cl);
 
