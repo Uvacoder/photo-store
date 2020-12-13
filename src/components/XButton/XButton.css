@@ -4,7 +4,7 @@
   border-radius: 50%;
   background-color: white;
   opacity: 0.6;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 
 .x-btn-circle:hover {
@@ -19,7 +19,7 @@
   height: 12%;
   background-color: #3f3f3f;
   opacity: 1;
-  transition: background-color 0.3s;
+  transition: background-color 0.2;
 }
 
 .x-btn-circle:hover > .x {
