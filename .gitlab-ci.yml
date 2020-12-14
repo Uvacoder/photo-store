@@ -16,7 +16,7 @@ cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
     - node_modules/
-    - public/assets/photos/
+    - public/assets/photos/generated/
     - tools/image_gen/target/
     - tools/hashdeps/hashtree/
 
