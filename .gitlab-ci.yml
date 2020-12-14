@@ -17,7 +17,7 @@ cache:
     - node_modules/
 
 BuildImageTool:
-  state: build
+  stage: build
   only:
     - master
     - development
