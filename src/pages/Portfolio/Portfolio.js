@@ -48,6 +48,7 @@ const Portfolio = ({
       <Gallery 
         photos={thumbnails}
         direction={"column"}
+        columns={w => Math.ceil(w/500)}
         renderImage={(props) => <GridImage {...props} isMobile={isMobile} openGallery={openGallery} />}
       />
       {/* Full Screen Slide Show Gallery */}
