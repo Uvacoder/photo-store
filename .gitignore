@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # generate image files
-/public/assets/photos/*.jpg
+/public/assets/photos/generated/*.jpg
+*.dephash
