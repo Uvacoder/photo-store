@@ -26,7 +26,7 @@ const SidebarMenu = ({
           {isMobile ? (
             <React.Fragment>
               <div className="sidebar-spacer" />
-              <SidebarItem to="/home" />
+              <SidebarItem to="/home" content="Home" />
             </React.Fragment>
           ) : (
             <SidebarItem  to="/home" content={<Logo />} />
