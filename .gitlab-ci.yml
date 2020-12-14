@@ -1,5 +1,6 @@
 stages:
   - build
+  - images
   - deploy
 
 variables:
@@ -22,7 +23,7 @@ BuildImageTool:
   only:
     - master
     - development
-  image: "rust:latest"
+  image: "rust:1.48.0"
   script:
     - cd tools/image_gen
     - cargo build --release
@@ -42,8 +43,21 @@ Build:
     - npm run build
   artifacts:
     paths:
-    - build/
+      - build/
     expire_in: 1 day
+
+GenerateImages:
+  stage: images
+  only:
+    - master
+    - development
+  image: ubuntu:20.04
+  script:
+    - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
+  artifcats:
+    paths:
+      - public/assets/photos/
+    expire_in: 1 hour
 
 DeployStaging:
   stage: deploy
