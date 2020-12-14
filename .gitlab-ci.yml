@@ -22,6 +22,9 @@ BuildImageTool:
     - master
     - development
   image: "rust:latest"
+  script:
+    - cd tools/image_gen
+    - cargo build --release
   artifacts:
     paths:
       - tools/image_gen/target/
