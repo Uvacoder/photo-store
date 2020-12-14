@@ -16,6 +16,7 @@ cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
     - node_modules/
+    - public/assets/photos/
     - tools/image_gen/target/
 
 GenerateImages:
@@ -28,7 +29,7 @@ GenerateImages:
     - cd tools/image_gen
     - cargo build --release
     - cd ../../
-    - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
+    - make images
   artifacts:
     paths:
       - public/assets/photos
