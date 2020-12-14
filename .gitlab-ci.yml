@@ -59,8 +59,7 @@ DeployStaging:
   before_script:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
   script:
-    - aws s3 sync build s3://$S3_BUCKET_STAGING --delete
-    - aws cloudfront create-invalidation --distribution-id $CDN_ID_STAGING --paths "/*"
+    - make deploy-staging
 
 DeployProduction:
   stage: deploy
@@ -71,5 +70,4 @@ DeployProduction:
   before_script:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
   script:
-    - aws s3 sync build s3://$S3_BUCKET_PRODUCTION --delete
-    - aws cloudfront create-invalidation --distribution-id $CDN_ID_PRODUCTION --paths "/*"
+    - make deploy-production
