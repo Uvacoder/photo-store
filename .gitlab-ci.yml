@@ -25,9 +25,6 @@ GenerateImages:
       - public/assets/photos/generated/
       - tools/image_gen/target/
   script:
-    - cd tools/image_gen
-    - cargo build --release
-    - cd ../../
     - make images
   artifacts:
     paths:
