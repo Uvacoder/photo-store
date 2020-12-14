@@ -4,7 +4,7 @@ stages:
   - deploy
 
 variables:
-  AWS_IMAGE: amazon/aws-cli:latest
+  AWS_IMAGE: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
