@@ -54,7 +54,7 @@ GenerateImages:
   image: ubuntu:20.04
   script:
     - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
-  artifcats:
+  artifacts:
     paths:
       - public/assets/photos/
     expire_in: 1 hour
