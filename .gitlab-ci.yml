@@ -1,5 +1,5 @@
 stages:
-  - build-tools
+  - prebuild
   - build
   - deploy
 
@@ -18,8 +18,8 @@ cache:
     - node_modules/
     - tools/image_gen/target/
 
-BuildImageTool:
-  stage: build-tools
+GenerateImages:
+  stage: prebuild
   only:
     - master
     - development
@@ -27,9 +27,10 @@ BuildImageTool:
   script:
     - cd tools/image_gen
     - cargo build --release
+    - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
   artifacts:
     paths:
-      - tools/image_gen/target/
+      - public/assets/photos
     expire_in: 1 day
 
 Build:
@@ -39,13 +40,11 @@ Build:
     - development
   image: node:14
   script:
-    - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
     - npm install
     - npm run build
   artifacts:
     paths:
       - build/
-      - public/assets/photos/
     expire_in: 1 day
 
 DeployStaging:
