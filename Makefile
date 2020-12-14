@@ -17,8 +17,6 @@ ORIG_IMGS = $(wildcard $(ORIG_IMGS_DIR)/*.jpg)
 RESIZED_IMGS_DIR = public/assets/photos/generated
 RESIZED_IMGS = $(subst $(ORIG_IMGS_DIR),$(RESIZED_IMGS_DIR),$(addsuffix _w500.jpg,$(basename $(ORIG_IMGS))))
 
-.PRECIOUS: %.dephash
-
 # Build image tool
 $(IMG_TOOL): $(call hash_deps,$(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml)
 	cd $(IMG_TOOL_PATH) && cargo build --release
@@ -31,28 +29,38 @@ $(RESIZED_IMGS_DIR)/%_w500.jpg: $(call hash_deps,$(ORIG_IMGS_DIR)/%.jpg $(IMG_TO
 # Generates resized images from fullsize originals
 images: $(RESIZED_IMGS)
 
-all: webapp
+all: build
 
 # Phony targts
-.PHONY: npminstall webapp deploy-staging deploy-production clean
+.PHONY: npminstall prebuild start build deploy-staging deploy-production clean
 
 npminstall:
 	npm install
 
+# Prebuild tasks
+prebuild: images npminstall
+
+# Starts react app locally
+start: prebuild
+	npm start
+
 # Builds react app
-webapp: images npminstall
+build: prebuild
 	npm run build
 
 # Deployment tasks assume IAM credentials and region (us-west-2) are set
+# Deploy to staging site
 deploy-staging:
 	aws s3 sync build s3://staging.atelier-mistral.com --delete
 	aws cloudfront create-invalidation --distribution-id E3S4WMILP7S81C --paths "/*"
 
+# Deploy to production site
 deploy-production:
 	aws s3 sync build s3://atelier-mistral.com --delete
 	aws cloudfront create-invalidation --distribution-id EG9IJEHT3X1J2 --paths "/*"
 
 clean:
+	rm -rf $(IMG_TOOL_PATH)/target
 	rm -rf $(RESIZED_IMGS_DIR)
 	rm -rf $(HASHDEPS_HASH_TREE_DIR)
 	rm -rf node_modules

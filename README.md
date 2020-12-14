@@ -12,8 +12,8 @@ Development has been done using Node.js v14.15.1.
 **Setup project:**  
 `git clone https://gitlab.com/cameronfyfe/er-photosite.git er-photosite.git`  
 `cd er-photosite.git`  
-`npm install`  
+`make prebuild`  
 **Run app locally:**  
-`npm start`  
+`make start`  
 **Production build:**  
-`npm run build`
+`make build'

@@ -45,7 +45,7 @@ Build:
     paths:
       - node_modules/
   script:
-    - make webapp
+    - make build
   artifacts:
     paths:
       - build/
