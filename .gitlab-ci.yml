@@ -27,7 +27,8 @@ GenerateImages:
   script:
     - cd tools/image_gen
     - cargo build --release
-    - ./target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
+    - cd ../../
+    - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
   artifacts:
     paths:
       - public/assets/photos
