@@ -29,7 +29,9 @@ GenerateImages:
     - make images
   artifacts:
     paths:
+      - tools/hashdeps/hashtree/
       - public/assets/photos/generated/
+      - tools/image_gen/target/
     expire_in: 1 day
 
 Build:
@@ -44,7 +46,6 @@ Build:
       - node_modules/
   script:
     - make webapp
-
   artifacts:
     paths:
       - build/
