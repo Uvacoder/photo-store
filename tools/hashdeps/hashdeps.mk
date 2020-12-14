@@ -200,8 +200,9 @@ define unhash_deps
 			$(1)))
 endef
 
-# Make will delete files created by pattern rules by default - prevent this.
-.PRECIOUS: %$(HASHDEPS_HASH_SUFFIX)
+# Make will delete intermediate files created by rules by default - prevent this.
+# .SECONDARY with no dependencies treats every file as secondary
+.SECONDARY:
 
 # Check if the file hash in the file is still accurate. If not, write an
 # updated hash.
