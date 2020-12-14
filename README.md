@@ -13,6 +13,7 @@ To install using nvm (Node Version Manager):
 `nvm install 14.15.1`  
 `nvm use 14.15.1`  
 **Image resizing tool developed using Rust 1.48.0**  
+To install toolchain:
 `curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh` (or download and inspect script first)  
 Shouldn't have issues with later versions but can run this to use 1.48.0  
 `rustup default 1.48.0`  
