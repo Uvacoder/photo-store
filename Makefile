@@ -3,6 +3,7 @@
 
 # Tool that generates a set of sized .jpgs from one .jpg
 IMG_TOOL_PATH = tools/image_gen
+IMG_TOOL_PATH_RETURN = ../../
 IMG_TOOL = $(IMG_TOOL_PATH)/target/release/image_gen
 
 # Full sized .jpgs
@@ -16,12 +17,12 @@ default: all
 
 # Build image tool
 $(IMG_TOOL): $(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml
-	cargo build --release
+	cd $(IMG_TOOL_PATH) && cargo build --release
 
 # This makes all resized images but we just use 200 width as indicator for all
 # assuming they alway all get generated togethor
-public/assets/photos/%_w200.jpg: public/assets/photos/originals/%.jpg $(IMG_TOOL)
-	$(IMG_TOOL) $< public/assets/photos
+public/assets/photos/%_w200.jpg: | public/assets/photos/originals/%.jpg $(IMG_TOOL)
+	$(IMG_TOOL) $(firstword $|) $(@D)
 
 # Generates resized images from fullsize originals
 images: $(RESIZED_IMGS)
