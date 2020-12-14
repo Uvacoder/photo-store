@@ -30,7 +30,7 @@ $(IMG_TOOL): $(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml
 
 # Handle image dependencies with content hashes instead of timestamps since this is a long execution
 # and we don't want to rerun just when source control updates timestamps
-public/assets/photos/generated%_w500.jpg: $(call hash_deps,public/assets/photos/originals/%.jpg $(IMG_TOOL)) | $(RESIZED_IMGS_DIR)
+$(RESIZED_IMGS_DIR)/%_w500.jpg: $(call hash_deps,$(ORIG_IMGS_DIR)/%.jpg $(IMG_TOOL)) | $(RESIZED_IMGS_DIR)
 	$(IMG_TOOL) $(ORIG_IMGS_DIR)/$*.jpg $(RESIZED_IMGS_DIR)
 
 # Generates resized images from fullsize originals
