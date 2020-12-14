@@ -1,6 +1,7 @@
-include tools/hashdeps/hashdeps.mk
 # Makefile for Atelier Mistral photography site
 # Author: Cameron Fyfe <cameron.j.fyfe@gmail>
+default: all
+include tools/hashdeps/hashdeps.mk
 
 # Tool that generates a set of sized .jpgs from one .jpg
 IMG_TOOL_PATH = tools/image_gen
@@ -15,14 +16,8 @@ ORIG_IMGS = $(wildcard $(ORIG_IMGS_DIR)/*.jpg)
 #       _w500 works by itself though for now assuming sets for each images are always generated togethor
 RESIZED_IMGS_DIR = public/assets/photos/generated
 RESIZED_IMGS = $(subst $(ORIG_IMGS_DIR),$(RESIZED_IMGS_DIR),$(addsuffix _w500.jpg,$(basename $(ORIG_IMGS))))
-# Necessary hash files for image hash depencies
-DEPHASH_FILES = $(ORIG_IMGS) $(IMG_TOOL) $(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml
-DEPHASHES = $(addprefix $(HASHDEPS_HASH_TREE_DIR)/,$(addsuff .dephash,$(DEPHASH_FILES)))
 
-default: all
-
-# uninvoked rule so make doesn't delete hashes
-dephashes: $(DEPHASHES)
+.PRECIOUS: %.dephash
 
 # Build image tool
 $(IMG_TOOL): $(call hash_deps,$(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml)
@@ -35,6 +30,11 @@ $(RESIZED_IMGS_DIR)/%_w500.jpg: $(call hash_deps,$(ORIG_IMGS_DIR)/%.jpg $(IMG_TO
 
 # Generates resized images from fullsize originals
 images: $(RESIZED_IMGS)
+
+all: webapp
+
+# Phony targts
+.PHONY: npminstall webapp deploy-staging deploy-production clean
 
 npminstall:
 	npm install
@@ -52,11 +52,12 @@ deploy-production:
 	aws s3 sync build s3://atelier-mistral.com --delete
 	aws cloudfront create-invalidation --distribution-id EG9IJEHT3X1J2 --paths "/*"
 
-all: webapp
-
 clean:
 	rm -rf $(RESIZED_IMGS_DIR)
 	rm -rf $(HASHDEPS_HASH_TREE_DIR)
+	rm -rf node_modules
+	rm -rf build
 
+# Folders
 $(RESIZED_IMGS_DIR):
 	mkdir $(RESIZED_IMGS_DIR)
