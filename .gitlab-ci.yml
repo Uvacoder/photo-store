@@ -12,20 +12,18 @@ variables:
   S3_BUCKET_PRODUCTION: $S3_BUCKET_PRODUCTION
   CDN_DISTRIBUTION_ID: $CDN_DISTRIBUTION_ID
 
-cache:
-  key: $CI_COMMIT_REF_SLUG
-  paths:
-    - node_modules/
-    - public/assets/photos/generated/
-    - tools/image_gen/target/
-    - tools/hashdeps/hashtree/
-
 GenerateImages:
   stage: prebuild
   only:
     - master
     - development
   image: "rust:1.48.0"
+  cache:
+    key: images_$CI_COMMIT_REF_SLUG
+    paths:
+      - tools/hashdeps/hashtree/
+      - public/assets/photos/generated/
+      - tools/image_gen/target/
   script:
     - cd tools/image_gen
     - cargo build --release
@@ -33,7 +31,7 @@ GenerateImages:
     - make images
   artifacts:
     paths:
-      - public/assets/photos
+      - public/assets/photos/generated/
     expire_in: 1 day
 
 Build:
@@ -42,9 +40,14 @@ Build:
     - master
     - development
   image: node:14
+  cache:
+    key: build_$CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
   script:
     - npm install
     - npm run build
+
   artifacts:
     paths:
       - build/
