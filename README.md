@@ -2,8 +2,8 @@ This repo is hosted on both GitLab and GitHub.  Issue tracking and CI/CD are man
  - [gitlab.com/cameronfyfe/er-photosite](https://gitlab.com/cameronfyfe/er-photosite) 
  - [github.com/cameronfyfe/er-photosite](https://github.com/cameronfyfe/er-photosite) 
 
-`master` branch pushes to [atelier-mistral.com](http://atelier-mistral.com)  
-`development` branch pushes to [staging.atelier-mistral.com](http://staging.atelier-mistral.com)
+`master` branch pushes to [atelier-mistral.com](https://atelier-mistral.com)  
+`development` branch pushes to [staging.atelier-mistral.com](https://staging.atelier-mistral.com)
 
 # Development
 
