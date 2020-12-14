@@ -16,8 +16,8 @@ ORIG_IMGS = $(wildcard $(ORIG_IMGS_DIR)/*.jpg)
 RESIZED_IMGS_DIR = public/assets/photos/generated
 RESIZED_IMGS = $(subst $(ORIG_IMGS_DIR),$(RESIZED_IMGS_DIR),$(addsuffix _w500.jpg,$(basename $(ORIG_IMGS))))
 # Necessary hash files for image hash depencies
-DEPHASHES = $(addprefix $(HASHDEPS_HASH_TREE_DIR)/,$(addsuffix .dephash,$(ORIG_IMGS)))
-DEPHASHES += $(HASHDEPS_HASH_TREE_DIR)/$(IMG_TOOL).dephash
+DEPHASH_FILES = $(ORIG_IMGS) $(IMG_TOOL) $(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml
+DEPHASHES = $(addprefix $(HASHDEPS_HASH_TREE_DIR)/,$(addsuff .dephash,$(DEPHASH_FILES)))
 
 default: all
 
@@ -25,7 +25,7 @@ default: all
 dephashes: $(DEPHASHES)
 
 # Build image tool
-$(IMG_TOOL): $(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml
+$(IMG_TOOL): $(call hash_deps,$(IMG_TOOL_PATH)/src/main.rs $(IMG_TOOL_PATH)/Cargo.toml)
 	cd $(IMG_TOOL_PATH) && cargo build --release
 
 # Handle image dependencies with content hashes instead of timestamps since this is a long execution
@@ -40,7 +40,7 @@ npminstall:
 	npm install
 
 # Builds react app
-webapp: npminstall images
+webapp: images npminstall
 	npm run build
 
 all: webapp
