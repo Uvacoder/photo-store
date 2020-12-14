@@ -43,6 +43,15 @@ npminstall:
 webapp: images npminstall
 	npm run build
 
+# Deployment tasks assume IAM credentials and region (us-west-2) are set
+deploy-staging:
+	aws s3 sync build s3://staging.atelier-mistral.com --delete
+	aws cloudfront create-invalidation --distribution-id E3S4WMILP7S81C --paths "/*"
+
+deploy-production:
+	aws s3 sync build s3://atelier-mistral.com --delete
+	aws cloudfront create-invalidation --distribution-id EG9IJEHT3X1J2 --paths "/*"
+
 all: webapp
 
 clean:
