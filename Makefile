@@ -9,7 +9,7 @@ IMG_TOOL = $(IMG_TOOL_PATH)/target/release/image_gen
 ORIG_IMGS = $(wildcard public/assets/photos/originals/*.jpg)
 # Resized .jpgs
 # TODO: make this list all sizes instead of just _w200
-#       just _w200 works though assuming sets for eaach images are always generated togethor
+#       _w200 works by itself though for now assuming sets for each images are always generated togethor
 RESIZED_IMGS = $(subst originals/,,$(addsuffix _w200.jpg,$(basename $(ORIG_IMGS))))
 
 default: all
