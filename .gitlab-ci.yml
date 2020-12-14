@@ -16,6 +16,17 @@ cache:
   paths:
     - node_modules/
 
+BuildImageTool:
+  state: build
+  only:
+    - master
+    - development
+  image: "rust:latest"
+  artifacts:
+    paths:
+      - tools/image_gen/target/
+    expire_in: 1 day
+
 Build:
   stage: build
   only:
