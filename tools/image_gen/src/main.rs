@@ -27,7 +27,7 @@ fn generate_images(path: &Path, dest: &str) {
     println!("Opening {}", og_filepath);
     let img = image::open(&og_filepath).unwrap();
 
-    let heights = vec![200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
+    let heights = vec![600, 800, 1000, 1200, 1400];
 
     for height in heights {
         let new_filename = format!("{}_h{}.jpg", og_name, height);
@@ -39,7 +39,7 @@ fn generate_images(path: &Path, dest: &str) {
         resized_img.save_with_format(new_filepath, image::ImageFormat::Jpeg).unwrap();
     }
 
-    let widths = vec![200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
+    let widths = vec![300, 400, 500, 600];
 
     for width in widths {
         let new_filename = format!("{}_w{}.jpg", og_name, width);
