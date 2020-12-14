@@ -18,6 +18,7 @@ cache:
     - node_modules/
     - public/assets/photos/
     - tools/image_gen/target/
+    - tools/hashdeps/hashtree/
 
 GenerateImages:
   stage: prebuild
