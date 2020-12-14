@@ -43,8 +43,7 @@ Build:
     paths:
       - node_modules/
   script:
-    - npm install
-    - npm run build
+    - make webapp
 
   artifacts:
     paths:
