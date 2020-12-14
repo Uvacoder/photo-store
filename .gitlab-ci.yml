@@ -10,7 +10,8 @@ variables:
   AWS_REGION: $AWS_REGION
   S3_BUCKET_STAGING: $S3_BUCKET_STAGING
   S3_BUCKET_PRODUCTION: $S3_BUCKET_PRODUCTION
-  CDN_DISTRIBUTION_ID: $CDN_DISTRIBUTION_ID
+  CDN_ID_STAGING: $CDN_ID_STAGING
+  CDN_ID_PRODUCTION: $CDN_ID_PRODUCTION
 
 GenerateImages:
   stage: prebuild
@@ -59,6 +60,7 @@ DeployStaging:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
   script:
       aws s3 sync build s3://$S3_BUCKET_STAGING --delete
+      aws cloudfront create-invalidation --distribution-id $CDN_ID_STAGING --paths "/*"
 
 DeployProduction:
   stage: deploy
@@ -70,3 +72,4 @@ DeployProduction:
     - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
   script:
       aws s3 sync build s3://$S3_BUCKET_PRODUCTION --delete
+      aws cloudfront create-invalidation --distribution-id $CDN_ID_PRODUCTION --paths "/*"
