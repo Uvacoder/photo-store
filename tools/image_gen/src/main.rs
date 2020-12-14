@@ -1,8 +1,6 @@
 extern crate image;
-extern crate glob;
 use std::path::Path;
 use std::error::Error;
-use glob::glob;
 
 fn main() -> Result<(), Box<dyn Error>> {
 
