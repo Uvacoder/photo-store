@@ -1,6 +1,6 @@
 stages:
+  - build-tools
   - build
-  - images
   - deploy
 
 variables:
@@ -19,7 +19,7 @@ cache:
     - tools/image_gen/target/
 
 BuildImageTool:
-  stage: build
+  stage: build-tools
   only:
     - master
     - development
@@ -39,25 +39,14 @@ Build:
     - development
   image: node:14
   script:
+    - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
     - npm install
     - npm run build
   artifacts:
     paths:
       - build/
-    expire_in: 1 day
-
-GenerateImages:
-  stage: images
-  only:
-    - master
-    - development
-  image: ubuntu:20.04
-  script:
-    - ./tools/image_gen/target/release/image_gen ./public/assets/photos/originals ./public/assets/photos
-  artifacts:
-    paths:
       - public/assets/photos/
-    expire_in: 1 hour
+    expire_in: 1 day
 
 DeployStaging:
   stage: deploy
