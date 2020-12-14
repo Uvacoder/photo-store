@@ -14,12 +14,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     let og_str = args.next().unwrap();
     let dest_str = args.next().unwrap();
 
-    // Generate images for each original
-    for file in glob(format!("{}/*", og_str).as_str()).expect("Failed to read glob pattern") {
-        let file_str = file.unwrap();
-        let file_path = Path::new(&file_str);
-        generate_images(&file_path, &dest_str);
-    }
+    let file_path = Path::new(&og_str);
+    generate_images(&file_path, &dest_str);
 
     Ok(())
 }
