@@ -1,7 +1,7 @@
 // Helpers for gridded forms with bootstrap styling
 // to avoid overloading jsx with col specifiers
 
-export default {
+const Form = {
   Row: ({
     children
   }) => (
@@ -22,3 +22,5 @@ export default {
     return <div className={"form-group "+cols}>{children}</div>
   }
 }
+
+export default Form;

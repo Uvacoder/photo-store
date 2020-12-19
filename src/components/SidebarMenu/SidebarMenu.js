@@ -5,7 +5,7 @@ import Sidebar, { SidebarItem } from './sidebar-components/Sidebar';
 import { contactInfo } from '../../global';
 import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
 
-export default ({
+const SidebarMenu = ({
   className,
   onSelect,
   isMobile,
@@ -73,3 +73,5 @@ export default ({
     </div>
   );
 }
+
+export default SidebarMenu;

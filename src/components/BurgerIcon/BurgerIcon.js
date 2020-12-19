@@ -1,6 +1,6 @@
 import './BurgerIcon.css';
 
-export default ({
+const BurgerIcon = ({
   isOpen,
   onClick
 }) => (
@@ -9,4 +9,6 @@ export default ({
     <div className="bar2"></div>
     <div className="bar3"></div>
   </div>
-)
+);
+
+export default BurgerIcon;

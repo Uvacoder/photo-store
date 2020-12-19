@@ -1,6 +1,6 @@
 import './Home.css';
 
-export default () => (
+const Home = () => (
   <div className="home-grid">
     <div className="atelier-mistral">
       <p className="title">Atelier Mistral</p>
@@ -11,3 +11,5 @@ export default () => (
     </div>
   </div>
 );
+
+export default Home;

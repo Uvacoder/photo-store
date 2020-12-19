@@ -1,6 +1,6 @@
 import './XButton.css';
 
-export default ({
+const XButton = ({
   className,
   onClick,
   width,
@@ -14,4 +14,7 @@ export default ({
       </div>
     </div>
   </div>
+
 )
+
+export default XButton;
