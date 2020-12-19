@@ -21,6 +21,24 @@ export default () => {
   const [photos, setPhotos] = useState([NIC_CAGE]);
   const [loadedPhotos, setLoadedPhotos] = useState(photos);
 
+  const [selectedPhoto, setSelectPhoto] = useState(null);
+
+  const SelectablePhoto = props => (
+    <img
+      alt=""
+      src={props.photo.src}
+      style={{
+        display: "block",
+        position: "absolute",
+        margin: props.margin,
+        top: props.top,
+        left: props.left,
+        height: props.photo.height,
+        width: props.photo.width,
+      }}
+    />            
+  )
+
   const onFileSelect = e => {
     setPhotos(photos.concat(Object.keys(e.target.files).map(i => {
       const image = new Image();
@@ -34,6 +52,28 @@ export default () => {
       };
     })));
   }
+
+  const handleKeyPress = e => {
+    switch(e.keyCode) {
+      case 37: // <-
+        const x = e.clientX, y = e.clientY;
+        console.log(x, y);
+        // const elementMouseIsOver = document.elementFromPoint(x, y);
+        break;
+      case 39: // ->
+        break;
+      default:
+        break;
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    }
+  })
+
 
   // Update image width/height ratios once image loads for photo grid library calcs
   useEffect(() => {
@@ -67,6 +107,7 @@ export default () => {
       <Gallery
         photos={loadedPhotos}
         direction={"column"}
+        renderImage={props => <SelectablePhoto {...props} />}
       />
       <div
         style={{
