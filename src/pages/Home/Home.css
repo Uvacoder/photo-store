@@ -1,29 +1,53 @@
-.home-border {
-  position: relative;
-  height: 100vh;
-}
+@import '../../global/fonts.css';
 
-.home-div {
-  z-index: -1;
-  position: absolute;
-  top: 50px;
-  bottom: 50px;
-  left: 0px;
-  right: 50px;
-  background: url(http://staging.atelier-mistral.com/assets/photos/Val&Austin-179.jpg) no-repeat center center fixed;
+.home-grid {
+  height: 200vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 4fr 4fr 4fr 12fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . ."
+    ". atelier-mistral ."
+    ". . ."
+    ". . .";
+  background: url(https://staging.atelier-mistral.com/assets/photos/generated/ValAustin-179_h1200.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
-.space {
-  width: 100%;
-  height: 50%;
+.atelier-mistral {
+  grid-area: atelier-mistral;
+  background-color: white;
+  border-radius: 25px;
+  opacity: 0.8;
 }
 
-.content {
-  width: 100%;
-  height: 25%;
-  background-color: white;
+.atelier-mistral .title {
+  text-align: center;
+  font-family: Nunito;
+  font-style: normal;
+  font-variant: normal;
+  font-size: 5rem;
+}
+
+.atelier-mistral .pronunciation {
+  text-align: center;
+  font-family: Nunito;
+  font-style: normal;
+  font-variant: normal;
+  font-size: 2rem;
+}
+
+.atelier-mistral .desc {
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: center;
+  font-family: Nunito;
+  font-style: normal;
+  font-variant: normal;
+  font-size: 1rem;
 }

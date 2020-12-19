@@ -3,12 +3,14 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './GalleryView.css';
+import { XButton } from '../../components';
 
 const GalleryView = ({
-  images,
+  children,
   initialIndex,
   closeGallery,
-  onLoad
+  onLoad,
+  onSlideChange,
 }) => {
 
   const sliderRef = useRef(null);
@@ -28,26 +30,19 @@ const GalleryView = ({
               swipe={true}
               infinite={true}
               speed={750}
-              adaptiveHeight={false}
               variableWidth={true}
               centerMode={true}
               slidesToShow={1}
               slidesToScroll={1}
               initialSlide={initialIndex}
+              beforeChange={onSlideChange}
       >
-        {images.map((image, i) => (
-          <img src={image} alt=""
-               onClick={() => sliderRef.current?.slickGoTo(i)}
-          >
-          </img>
-        ))}
-
+        {React.Children.toArray(children).map((c, i) => React.cloneElement(c, {
+          ...c.props, onClick:() => sliderRef.current?.slickGoTo(i)
+        }))}
       </Slider>
-      <button type="button" className="gallery-close close" aria-label="Close"
-              onClick={closeGallery}>
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </React.Fragment> 
+      <XButton className="gallery-x-btn" width={40} height={40} onClick={closeGallery} />
+    </React.Fragment>
   );
 }
   

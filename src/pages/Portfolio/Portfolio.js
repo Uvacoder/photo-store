@@ -1,26 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { GridImage, SlideshowImage, GalleryView } from '../../components';
 import Gallery from 'react-photo-gallery';
-import GalleryView from '../../components/GalleryView/GalleryView.js';
 import { getPhotos } from './photos.js';
+import { preloadImage } from '../../util';
 import './Portfolio.css';
 
 const Portfolio = ({
   photoGroup,
   isMobile
 }) => {
-
+  
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const {thumbnails, images} = getPhotos(photoGroup);
 
-  useEffect(() => {
-    // Preload fullsize images for fullscreen gallery view
-    images.forEach(image => {
-      const img = new Image();
-      img.src = image;
-    })
-  })
+  // Preload all fullsize images
+  // TODO: remove once images layout in slider view doesn't get messed up by smart loading
+  useEffect(() => images.forEach(img => (new Image()).src = img));
 
   const fade = () => document.body.className += ' fade';
   const unfade = () => document.body.className = document.body.className.replace(' fade', '');
@@ -46,23 +43,32 @@ const Portfolio = ({
   }
 
   return (
-    !galleryOpen ? (
-      // Photo Grid
-      <Gallery photos={thumbnails}
-                direction={"column"}
-                onClick={isMobile
-                  ? undefined
-                  : (evt, photo) => openGallery(photo.index)
-                }
+    <React.Fragment>
+      {/* Photo Grid */}
+      <Gallery 
+        photos={thumbnails}
+        direction={"column"}
+        columns={w => Math.ceil(w/500)}
+        renderImage={(props) => <GridImage {...props} isMobile={isMobile} openGallery={openGallery} />}
       />
-    ) : (
-      // Full Screen Gallery
-      <GalleryView images={images}
-                   initialIndex={photoIndex}
-                   closeGallery={closeGallery}
-                   onLoad={unfade}
-      />
-    )
+      {/* Full Screen Slide Show Gallery */}
+      {galleryOpen &&
+        <GalleryView
+          initialIndex={photoIndex}
+          closeGallery={closeGallery}
+          onLoad={unfade}
+          onSlideChange={(curSlide, nextSlide) => {
+            const arrLen = images.length;
+            for (var i=1; i<=2; i++) {
+              preloadImage(images[ (nextSlide + i)          % arrLen ]);
+              preloadImage(images[ (nextSlide + arrLen - i) % arrLen ]);
+            }
+          }}
+        >
+          {images.map((image => <SlideshowImage src={image} />))}
+        </GalleryView>
+      }
+    </React.Fragment>
   );
 }
 
