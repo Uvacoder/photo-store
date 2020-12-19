@@ -141,9 +141,11 @@ const PhotoGridTestPage = () => {
         style={{
           zIndex: 10,
           position: "fixed",
-          left: 10,
-          bottom: 10,
-          width: 180,
+          left: 0,
+          bottom: 0,
+          width: 200,
+          backgroundColor: '#eee',
+          border: '2px solid black'
         }}
       >
         <b>click</b> - select image<br />
@@ -152,7 +154,7 @@ const PhotoGridTestPage = () => {
         <b>any key</b> - unselect image<br />
         <br />
         127.0.0.1:<input type="text" value={port} onChange={e => {setPort(e.target.value)}} style={{width:80}}/>
-        <input type="file" multiple onChange={onFileSelect} />
+        <input type="file" multiple onChange={onFileSelect} style={{width:180}} />
         <button onClick={() => setLoadedPhotos([NIC_CAGE])} >Clear</button><br/>
         <br />
         Result:<br />
