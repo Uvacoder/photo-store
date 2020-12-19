@@ -42,7 +42,7 @@ const PhotoGridTestPage = () => {
       let ps = photos;
       // Filter Nic Cage
       if (photos.length > 1) {
-        ps = ps.filter(p => p.name != "Cage");
+        ps = ps.filter(p => p.name !== "Cage");
       }
       ps.forEach(p => {
         if (p.width !== p.image.naturalWidth || p.height !== p.image.naturalHeight) {
