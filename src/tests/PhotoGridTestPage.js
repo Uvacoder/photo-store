@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Gallery from 'react-photo-gallery';
+import arrayMove from 'array-move';
 
 const nicImage = new Image();
 nicImage.src = "https://www.biography.com/.image/c_fill%2Ccs_srgb%2Cfl_progressive%2Ch_400%2Cq_auto:good%2Cw_620/MTIwNjA4NjMzNzYwMjg2MjIw/nicolas-cage-9234498-1-402.jpg";
@@ -19,25 +20,35 @@ const PhotoGridTestPage = () => {
   const [port, setPort] = useState(8887);
 
   const [photos, setPhotos] = useState([NIC_CAGE]);
-  const [loadedPhotos, setLoadedPhotos] = useState(photos);
+  const [loadedPhotos, _setLoadedPhotos] = useState(photos);
+  const setLoadedPhotos = p => {
+    setPhotos(p);
+    _setLoadedPhotos(p);
+  }
 
-  const [selectedPhoto, setSelectPhoto] = useState(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const SelectablePhoto = props => (
-    <img
-      alt=""
-      src={props.photo.src}
-      style={{
-        display: "block",
-        position: "absolute",
-        margin: props.margin,
-        top: props.top,
-        left: props.left,
-        height: props.photo.height,
-        width: props.photo.width,
-      }}
-    />            
-  )
+  const SelectablePhoto = props => {
+    const selected = selectedPhoto === props.photo.src;
+    return (
+      <img
+        alt=""
+        src={props.photo.src}
+        style={{
+          display: "block",
+          position: "absolute",
+          margin: props.margin,
+          top: props.top,
+          left: props.left,
+          height: props.photo.height,
+          width: props.photo.width,
+          filter: selectedPhoto ? (selected ? "grayscale(0%)" : "grayscale(100%)") : "grayscale(0%)",
+          border: selected ? "5px solid orange" : ""
+        }}
+        onClick={() => {console.log(selectedPhoto);setSelectedPhoto(props.photo.src)}}
+      />            
+    );
+  }
 
   const onFileSelect = e => {
     setPhotos(photos.concat(Object.keys(e.target.files).map(i => {
@@ -54,15 +65,33 @@ const PhotoGridTestPage = () => {
   }
 
   const handleKeyPress = e => {
+    const findWithAttr = (array, attr, value) => {
+      for(var i = 0; i < array.length; i += 1) {
+          if(array[i][attr] === value) {
+              return i;
+          }
+      }
+      return -1;
+  }
     switch(e.keyCode) {
-      case 37: // <-
-        const x = e.clientX, y = e.clientY;
-        console.log(x, y);
-        // const elementMouseIsOver = document.elementFromPoint(x, y);
+      case 87: // w <-
+        if (selectedPhoto !== null) {
+          const i = findWithAttr(photos, 'src', selectedPhoto);
+          const iNew = i <= 0 ? 0 : i-1;
+          const newPhotos = arrayMove(photos, i, iNew);
+          setLoadedPhotos(newPhotos);
+        }
         break;
-      case 39: // ->
+      case 69: // e ->
+        if (selectedPhoto !== null) {
+          const i = findWithAttr(photos, 'src', selectedPhoto);
+          const iNew = i >= photos.length-1 ? photos.length-1 : i+1;
+          const newPhotos = arrayMove(photos, i, iNew);
+          setLoadedPhotos(newPhotos);
+        }
         break;
       default:
+        setSelectedPhoto(null);
         break;
     }
   }
@@ -73,7 +102,6 @@ const PhotoGridTestPage = () => {
       document.removeEventListener('keydown', handleKeyPress);
     }
   })
-
 
   // Update image width/height ratios once image loads for photo grid library calcs
   useEffect(() => {
@@ -120,7 +148,7 @@ const PhotoGridTestPage = () => {
       >
         127.0.0.1:<input type="text" value={port} onChange={e => {setPort(e.target.value)}} style={{width:80}}/>
         <input type="file" multiple onChange={onFileSelect} />
-        <button onClick={() => {console.log("click"); setPhotos([NIC_CAGE]); setLoadedPhotos([NIC_CAGE]);}} >Clear</button><br/>
+        <button onClick={() => setLoadedPhotos([NIC_CAGE])} >Clear</button><br/>
       </div>
     </React.Fragment>
   );
