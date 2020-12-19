@@ -6,6 +6,8 @@ import Portfolio from './Portfolio/Portfolio.js';
 import About from './About/About.js';
 import Contact from './Contact/Contact.js';
 
+import PhotoGridTestPage from '../tests/PhotoGridTestPage.js';
+
 const PageContent = ({
   className,
   isMobile
@@ -61,6 +63,11 @@ const PageContent = ({
     />
     <Route  path='/contact'
             component={Contact}
+    />
+
+    {/* TESTS */}
+    <Route  path='/photogridtest'
+            component={PhotoGridTestPage}
     />
   </div>
 )
