@@ -1,4 +1,4 @@
-export const formattedEmail = (
+const formattedEmail = (
   formFields,
   useHtml
 ) => (
@@ -63,3 +63,5 @@ const formattedBody = (
 
   return emailBody;
 }
+
+export default formattedEmail;

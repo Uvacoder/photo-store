@@ -14,7 +14,7 @@ const NIC_CAGE = {
 
 let it = 0;
 
-export default () => {
+const PhotoGridTestPage = () => {
 
   const [port, setPort] = useState(8887);
 
@@ -84,3 +84,5 @@ export default () => {
     </React.Fragment>
   );
 }
+
+export default PhotoGridTestPage;

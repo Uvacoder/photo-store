@@ -2,7 +2,7 @@ import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons.js';
 import './MobileTray.css';
 import BurgerIcon from '../BurgerIcon/BurgerIcon.js';
 
-export default ({
+const MobileTray = ({
   onBurgerClick,
   menuOpen
 }) => (
@@ -20,3 +20,5 @@ export default ({
     </div>
   </div>
 );
+
+export default MobileTray;

@@ -3,8 +3,9 @@ import { GridImage, SlideshowImage, GalleryView } from '../../components';
 import Gallery from 'react-photo-gallery';
 import { getPhotos } from './photos.js';
 import { preloadImage } from '../../util';
+import './Portfolio.css';
 
-export default ({
+const Portfolio = ({
   photoGroup,
   isMobile
 }) => {
@@ -70,3 +71,5 @@ export default ({
     </React.Fragment>
   );
 }
+
+export default Portfolio;

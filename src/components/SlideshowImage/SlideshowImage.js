@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FadeLoadImage } from '../';
 
-export default (
+const SlideshowImage = (
   props
 ) => {
 
@@ -55,3 +55,5 @@ export default (
     </div>
   );
 }
+
+export default SlideshowImage;

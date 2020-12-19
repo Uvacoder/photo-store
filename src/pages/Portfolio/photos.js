@@ -1,5 +1,5 @@
 
-export const getPhotos = group => {
+export function getPhotos(group) {
   // Default to group 'all'
   if (typeof group === 'undefined') {
     group = "all"

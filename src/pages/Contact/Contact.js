@@ -1,7 +1,7 @@
 import { contactInfo } from '../../global';
 import ContactForm from '../../components/ContactForm/ContactForm.js'
 
-export default () => {
+const Contact = () => {
   return (
     <div>
 
@@ -26,3 +26,5 @@ export default () => {
     </div>
   );
 }
+
+export default Contact;
