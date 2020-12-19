@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Gallery from 'react-photo-gallery';
-import { getPhotos } from '../pages/Portfolio/photos.js';
 
 const nicImage = new Image();
 nicImage.src = "https://www.biography.com/.image/c_fill%2Ccs_srgb%2Cfl_progressive%2Ch_400%2Cq_auto:good%2Cw_620/MTIwNjA4NjMzNzYwMjg2MjIw/nicolas-cage-9234498-1-402.jpg";
