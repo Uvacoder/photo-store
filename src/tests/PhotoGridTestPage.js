@@ -154,6 +154,9 @@ const PhotoGridTestPage = () => {
         127.0.0.1:<input type="text" value={port} onChange={e => {setPort(e.target.value)}} style={{width:80}}/>
         <input type="file" multiple onChange={onFileSelect} />
         <button onClick={() => setLoadedPhotos([NIC_CAGE])} >Clear</button><br/>
+        <br />
+        Result:<br />
+        <input type='text' id='resultJson' value={JSON.stringify(loadedPhotos)} style={{width:180}} />
       </div>
     </React.Fragment>
   );
