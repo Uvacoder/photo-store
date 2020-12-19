@@ -1,7 +1,7 @@
 import { FadeLoadImage } from '../';
 import { preloadImage } from '../../util';
 
-const GridImage = (
+export default (
   props
 ) => (
   <FadeLoadImage
@@ -24,6 +24,4 @@ const GridImage = (
       : () => props.openGallery(props.index)
     }
   />            
-);
-
-export default GridImage;
+)

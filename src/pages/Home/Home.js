@@ -1,6 +1,6 @@
 import './Home.css';
 
-const Home = () => (
+export default () => (
   <div className="home-grid">
     <div className="atelier-mistral">
       <p className="title">Atelier Mistral</p>
@@ -11,5 +11,3 @@ const Home = () => (
     </div>
   </div>
 );
-
-export default Home;

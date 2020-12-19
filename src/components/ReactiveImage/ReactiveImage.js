@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-const ReactiveImage = ({
+export default ({
   loadCheckInterval,
   onImageLoad,
   ...props
@@ -29,5 +29,3 @@ const ReactiveImage = ({
     <img alt="" {...props} ref={ref} />        
   );
 }
-
-export default ReactiveImage;

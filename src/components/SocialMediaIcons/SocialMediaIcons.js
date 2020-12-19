@@ -1,5 +1,6 @@
 import React from 'react';
 import './SocialMediaIcons.css';
+import IconLink from './IconLink';
 
 import { ReactComponent as FacebookIcon } from '../../assets/images/icons/Facebook.svg';
 import { ReactComponent as FacebookIconHover } from '../../assets/images/icons/FacebookInverted.svg';
@@ -8,27 +9,7 @@ import { ReactComponent as InstagramIconHover } from '../../assets/images/icons/
 import { ReactComponent as PinterestIcon } from '../../assets/images/icons/Pinterest.svg';
 import { ReactComponent as PinterestIconHover } from '../../assets/images/icons/PinterestInverted.svg';
 
-const IconLink = ({
-  href,
-  icon,
-  iconHover
-}) => (
-  <a  href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-  >
-    <div className="sm-icon-div">
-      {React.createElement(icon, {
-        className: "sm-icon-svg"
-      })}
-      {React.createElement(iconHover, {
-        className: "sm-icon-svg sm-hover-svg"
-      })}
-    </div>
-  </a>
-);
-
-const SocialMediaIcons = () => (
+export default () => (
   <div className="icon-container">
     <IconLink icon={FacebookIcon}
               iconHover={FacebookIconHover}
@@ -43,6 +24,4 @@ const SocialMediaIcons = () => (
               href="https://www.pinterest.com/ateliermistralphoto/"
     />
   </div>
-);
-
-export default SocialMediaIcons;
+)

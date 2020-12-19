@@ -3,12 +3,12 @@ import { contactInfo } from '../../global';
 import Form from '../../components/FormHelpers/index.js';
 import Cleave from 'cleave.js/react';
 import 'cleave.js/dist/addons/cleave-phone.us';
-import formattedEmail from './formattedEmail.js';
+import { formattedEmail } from './formattedEmail.js';
 const { Row, Group } = Form;
 
 const formSubmissionApiUrl = 'https://cmkh6wam2g.execute-api.us-west-2.amazonaws.com/v1';
 
-const ContactForm = () => {
+export default () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("");
@@ -243,5 +243,3 @@ const ContactForm = () => {
     );
   }
 }
-
-export default ContactForm;

@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './GalleryView.css';
 import { XButton } from '../../components';
 
-const GalleryView = ({
+export default ({
   children,
   initialIndex,
   closeGallery,
@@ -45,5 +45,3 @@ const GalleryView = ({
     </React.Fragment>
   );
 }
-  
-export default GalleryView;

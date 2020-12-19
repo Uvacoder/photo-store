@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactiveImage } from '../';
 
-const FadeLoadImage = ({
+export default ({
   loadCheckInterval,
   ...props
 }) => {
@@ -24,5 +24,3 @@ const FadeLoadImage = ({
     />            
   );
 }
-
-export default FadeLoadImage;

@@ -2,7 +2,7 @@ import React from 'react';
 import './Sidebar.css';
 import { NavLink } from 'react-router-dom';
 
-const SidebarItem = ({
+export default ({
   children,
   className,
   isMobile,
@@ -38,5 +38,3 @@ const SidebarItem = ({
     </div>
   );
 }
-
-export default SidebarItem;
