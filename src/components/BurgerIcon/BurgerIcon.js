@@ -7,11 +7,11 @@ const Bar = styled.div`
   background-color: var(--social-media-icon-link-color);
   margin: 5px 0;
   transition: 0.4s;
-  ${props => props.asXBar1 && '-webkit-transform: translate(0px, 9px) rotate(-45deg)'};
-  ${props => props.asXBar1 && 'transform: translate(0px, 9px) rotate(-45deg)'};
-  ${props => props.asXBar2 && 'opacity: 0'};
-  ${props => props.asXBar3 && '-webkit-transform: translate(0px, -9px) rotate(45deg)'};
-  ${props => props.asXBar3 && 'transform: translate(0px, -9px) rotate(45deg)'};
+  ${p => p.asXBar1 && '-webkit-transform: translate(0px, 9px) rotate(-45deg)'};
+  ${p => p.asXBar1 && 'transform: translate(0px, 9px) rotate(-45deg)'};
+  ${p => p.asXBar2 && 'opacity: 0'};
+  ${p => p.asXBar3 && '-webkit-transform: translate(0px, -9px) rotate(45deg)'};
+  ${p => p.asXBar3 && 'transform: translate(0px, -9px) rotate(45deg)'};
 `;
 
 const BurgerIcon = ({
