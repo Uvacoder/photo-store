@@ -23,14 +23,12 @@ const SidebarMenu = ({
     <div {...{className}}>
       <div className={isMobile ? "scroll-mobile" : "scroll"}>
         <Sidebar isMobile={isMobile} onPick={handleClick}>
-          {isMobile ? (
-            <React.Fragment>
-              <div className="sidebar-spacer" />
-              <SidebarItem to="/home" content="Home" />
-            </React.Fragment>
-          ) : (
-            <SidebarItem  to="/home" content={<Logo />} />
-          )}
+          
+          {isMobile && <div className="sidebar-spacer" />}
+          {isMobile
+            ? <SidebarItem to="/home" content="Home" />
+            : <SidebarItem  to="/home" content={<Logo />} />
+          }
 
           <SidebarItem to="/engagements" content="Engagements" />
           <SidebarItem to="/maternity" content="Maternity" />
