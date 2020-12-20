@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ReactiveImage } from '../';
+import { ReactiveImage } from '.';
 
 const FadeLoadImage = ({
   loadCheckInterval,

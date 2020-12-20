@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FadeLoadImage } from '../';
+import { FadeLoadImage } from '.';
 
 const SlideshowImage = (
   props

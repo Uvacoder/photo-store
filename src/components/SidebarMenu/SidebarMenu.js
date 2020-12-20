@@ -1,6 +1,6 @@
 import './SidebarMenu.css';
 import React, { useState } from 'react';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo';
 import Sidebar, { SidebarItem } from './sidebar-components/Sidebar';
 import { contactInfo } from '../../global';
 import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';

@@ -1,5 +1,5 @@
-import { FadeLoadImage } from '../';
-import { preloadImage } from '../../util';
+import { FadeLoadImage } from '.';
+import { preloadImage } from '../util';
 
 const GridImage = (
   props
