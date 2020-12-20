@@ -1,9 +1,17 @@
 import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './GalleryView.css';
 import { XButton } from '../../components';
+
+const GalleryXButton = styled(p => <XButton {...p} />)`
+  z-index: 3;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+`;
 
 const GalleryView = ({
   children,
@@ -41,7 +49,7 @@ const GalleryView = ({
           ...c.props, onClick:() => sliderRef.current?.slickGoTo(i)
         }))}
       </Slider>
-      <XButton className="gallery-x-btn" width={40} height={40} onClick={closeGallery} />
+      <GalleryXButton width={40} height={40} onClick={closeGallery} />
     </React.Fragment>
   );
 }

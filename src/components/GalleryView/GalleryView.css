@@ -10,10 +10,3 @@
 .slick-slide {
   background-color: white;
 }
-
-.gallery-x-btn {
-  z-index: 3;
-  position: fixed;
-  top: 50px;
-  right: 50px;
-}
