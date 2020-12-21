@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { mobileTrayHeight } from 'global';
+import { mobileTrayHeight } from '../global';
 import { SocialMediaIcons, BurgerIcon } from '.';
 
 const PhantomTray = styled.div`

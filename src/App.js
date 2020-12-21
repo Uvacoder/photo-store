@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import SidebarMenu from './components/SidebarMenu/SidebarMenu.js';
 import PageContent from './pages';
 import { slide as SlideMenu } from 'react-burger-menu';
-import MobileTray from './components/MobileTray/MobileTray.js';
+import { MobileTray } from './components';
 
 import './App.css';
 
