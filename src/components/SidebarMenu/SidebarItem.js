@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../global';
-import { NavLink, } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const SidebarItemContainer = styled.div`
   text-align: right;
