@@ -1,7 +1,7 @@
 import './SidebarMenu.css';
-import React from 'react';
-import Logo from '../Logo/Logo';
-import SidebarItem from './sidebar-components/SidebarItem';
+import React, { useState } from 'react';
+import Logo from '../Logo';
+import Sidebar, { SidebarItem } from './sidebar-components/Sidebar';
 import { contactInfo } from '../../global';
 import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
 
@@ -11,53 +11,62 @@ const SidebarMenu = ({
   isMobile,
 }) => {
 
-  const cl = isMobile
-    ? "sidebar-item-container sic-mobile"
-    : "sidebar-item-container"
-  ;
+  const [isAboutSubOpen, setIsAboutSubOpen] = useState(false);
+
+  const handleClick = (path => {
+    setIsAboutSubOpen(path ==="/about"
+                    || path === "/recognition"
+                    || path === "/awards");
+  });
 
   return (
     <div {...{className}}>
       <div className={isMobile ? "scroll-mobile" : "scroll"}>
-        {isMobile ? (
-          <React.Fragment>
-            <div className="sidebar-spacer" />
-            <SidebarItem className={cl} to="/home">Home</SidebarItem>
-          </React.Fragment>
-        ) : (
-          <SidebarItem className={cl} to="/home"><Logo /></SidebarItem>
-        )}
+        <Sidebar isMobile={isMobile} onPick={handleClick}>
+          
+          {isMobile && <div className="sidebar-spacer" />}
+          {isMobile
+            ? <SidebarItem to="/home" content="Home" />
+            : <SidebarItem  to="/home" content={<Logo />} />
+          }
 
-        <SidebarItem className={cl} to="/engagements">Engagements</SidebarItem>
-        <SidebarItem className={cl} to="/maternity">Maternity</SidebarItem>
-        <SidebarItem className={cl} to="/family">Family</SidebarItem>
-        <SidebarItem className={cl} to="/portraits">Portraits</SidebarItem>
-        <SidebarItem className={cl} to="/adventurelifestyle">Adventure + Lifestyle</SidebarItem>
+          <SidebarItem to="/engagements" content="Engagements" />
+          <SidebarItem to="/maternity" content="Maternity" />
+          <SidebarItem to="/family" content="Family" />
+          <SidebarItem to="/portraits" content="Portraits" />
+          <SidebarItem to="/adventurelifestyle" content="Adventure + Lifestyle" />
 
-        <div className="sidebar-spacer" />
+          <div className="sidebar-spacer" />
 
-        <SidebarItem className={cl} to="/ourprocess">Our Process</SidebarItem>
-        <SidebarItem className={cl} to="/about">Behind the Lens</SidebarItem>
-        <SidebarItem className={cl} to="/recognition">Recognition</SidebarItem>
-        <SidebarItem className={cl} to="/awards">Awards</SidebarItem>
-        <SidebarItem className={cl} to="/contact">Get In Touch</SidebarItem>
+          <SidebarItem to="/ourprocess" content="Our Process" />
 
-        <div className="sidebar-spacer" />
+          <SidebarItem  to="/about" styles={{marginRight: "0px !important"}}
+                        isSubHeader={true}
+                        isSubOpen={isAboutSubOpen}
+                        content="Behind the Lens"
+          >
+            <SidebarItem to="/recognition" content="Recognition" />
+            <SidebarItem to="/awards" content="Awards" />
+          </SidebarItem>
 
-        {!isMobile &&
-          <React.Fragment>
-            <p className="contact phone">{contactInfo.phone}</p>
-            <p className="contact email">{contactInfo.email}</p>
-            <div className="sidebar-icons-container">
-              <SocialMediaIcons />
-            </div>
-          </React.Fragment>
-        }
+          <SidebarItem to="/contact" content="Get In Touch" />
 
-        {isMobile &&
-          <div className="mobile-centering-spacer" />
-        }
+          <div className="sidebar-spacer" />
 
+          {!isMobile &&
+            <React.Fragment>
+              <p className="contact phone">{contactInfo.phone}</p>
+              <p className="contact email">{contactInfo.email}</p>
+              <div className="sidebar-icons-container">
+                <SocialMediaIcons />
+              </div>
+            </React.Fragment>
+          }
+
+          {isMobile &&
+            <div className="mobile-centering-spacer" />
+          }
+        </Sidebar>
       </div>
     </div>
   );

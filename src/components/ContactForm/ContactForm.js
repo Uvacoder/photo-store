@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useRef } from 'react';
 import { contactInfo } from '../../global';
-import Form from '../../components/FormHelpers/index.js';
+import Form from '../FormHelpers.js';
 import Cleave from 'cleave.js/react';
 import 'cleave.js/dist/addons/cleave-phone.us';
 import formattedEmail from './formattedEmail.js';
