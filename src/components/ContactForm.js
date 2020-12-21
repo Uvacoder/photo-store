@@ -4,7 +4,7 @@ import 'cleave.js/dist/addons/cleave-phone.us';
 import { contactInfo } from '../global';
 import { formatContactEmail } from '../logic/formatContactEmail';
 import { Form } from '.';
-const { Row, Group } = Form;
+const { Row, Group } = { Form };
 
 const formSubmissionApiUrl = 'https://cmkh6wam2g.execute-api.us-west-2.amazonaws.com/v1';
 
