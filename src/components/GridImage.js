@@ -1,5 +1,5 @@
 import { FadeLoadImage } from '.';
-import { preloadImage } from '../util';
+import { preloadImage } from '../logic/util';
 
 const GridImage = (
   props

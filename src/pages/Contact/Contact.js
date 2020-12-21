@@ -1,5 +1,5 @@
 import { contactInfo } from '../../global';
-import ContactForm from '../../components/ContactForm/ContactForm.js'
+import { ContactForm } from '../../components'
 
 const Contact = () => {
   return (

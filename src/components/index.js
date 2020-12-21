@@ -1,6 +1,5 @@
 export { default as BurgerIcon } from './BurgerIcon';
-export { default as ContactFrom } from './ContactForm/ContactForm';
-export { default as formattedEmail } from './ContactForm/formattedEmail';
+export { default as ContactForm } from './ContactForm';
 export { default as FadeLoadImage } from './FadeLoadImage';
 export { default as Form } from './FormHelpers';
 export { default as GalleryView } from './GalleryView/GalleryView';

@@ -1,9 +1,9 @@
 import React, { useState, useReducer, useRef } from 'react';
-import { contactInfo } from '../../global';
-import Form from '../FormHelpers.js';
 import Cleave from 'cleave.js/react';
 import 'cleave.js/dist/addons/cleave-phone.us';
-import formattedEmail from './formattedEmail.js';
+import { contactInfo } from '../global';
+import { formatContactEmail } from '../logic/formatContactEmail';
+import { Form } from '.';
 const { Row, Group } = Form;
 
 const formSubmissionApiUrl = 'https://cmkh6wam2g.execute-api.us-west-2.amazonaws.com/v1';
@@ -62,8 +62,8 @@ const ContactForm = () => {
         to: state.emailAddress,
         subject: "Atelier Mistral Inquiry Confirmation",
         body: {
-          html: formattedEmail(state, true),
-          text: formattedEmail(state, false)
+          html: formatContactEmail(state, true),
+          text: formatContactEmail(state, false)
         }
       })
     })
