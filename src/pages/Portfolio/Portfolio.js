@@ -3,7 +3,6 @@ import { GridImage, SlideshowImage, GalleryView } from '../../components';
 import Gallery from 'react-photo-gallery';
 import { getPhotos } from './photos.js';
 import { preloadImage } from '../../logic/util';
-import './Portfolio.css';
 
 const Portfolio = ({
   photoGroup,
