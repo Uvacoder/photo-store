@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { mobileTrayHeight } from '../../global';
-import Logo from '../Logo';
 import Sidebar from './Sidebar';
 import SidebarItem from './SidebarItem';
 import { contactInfo } from '../../global';
-import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
+import { Logo, SocialMediaIcons } from '../';
 
 const ContactStyle = styled.div`
   text-align: center;
