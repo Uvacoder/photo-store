@@ -1,9 +1,31 @@
-import './SidebarMenu.css';
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import { mobileTrayHeight } from '../../global';
 import Logo from '../Logo';
-import Sidebar, { SidebarItem } from './sidebar-components/Sidebar';
+import Sidebar from './Sidebar';
+import SidebarItem from './SidebarItem';
 import { contactInfo } from '../../global';
 import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons';
+
+const ContactStyle = styled.div`
+  text-align: center;
+  margin: 0;
+`;
+const PhoneStyle = styled(ContactStyle)`font-size: 0.75rem;`;
+const EmailStyle = styled(ContactStyle)`font-size: 0.65rem;`;
+
+const SidebarSpacer = styled.div`height: 24px`;
+const MobileCenteringSpacer = styled.div`${'height: '+mobileTrayHeight+';'}`;
+
+const SidebarContainer = styled.div`
+  ${p => !p.isMobile && 'height: 100%;'}
+  overflow: auto;
+`;
+
+const IconsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const SidebarMenu = ({
   className,
@@ -21,10 +43,11 @@ const SidebarMenu = ({
 
   return (
     <div {...{className}}>
-      <div className={isMobile ? "scroll-mobile" : "scroll"}>
+      <SidebarContainer isMobile={isMobile}>
         <Sidebar isMobile={isMobile} onPick={handleClick}>
           
-          {isMobile && <div className="sidebar-spacer" />}
+          {isMobile && <SidebarSpacer/>}
+
           {isMobile
             ? <SidebarItem to="/home" content="Home" />
             : <SidebarItem  to="/home" content={<Logo />} />
@@ -36,14 +59,13 @@ const SidebarMenu = ({
           <SidebarItem to="/portraits" content="Portraits" />
           <SidebarItem to="/adventurelifestyle" content="Adventure + Lifestyle" />
 
-          <div className="sidebar-spacer" />
+          <SidebarSpacer/>
 
           <SidebarItem to="/ourprocess" content="Our Process" />
 
-          <SidebarItem  to="/about" styles={{marginRight: "0px !important"}}
-                        isSubHeader={true}
-                        isSubOpen={isAboutSubOpen}
-                        content="Behind the Lens"
+          <SidebarItem to="/about" content="Behind the Lens"
+                       isSubHeader={true}
+                       isSubOpen={isAboutSubOpen}        
           >
             <SidebarItem to="/recognition" content="Recognition" />
             <SidebarItem to="/awards" content="Awards" />
@@ -51,23 +73,22 @@ const SidebarMenu = ({
 
           <SidebarItem to="/contact" content="Get In Touch" />
 
-          <div className="sidebar-spacer" />
+          <SidebarSpacer/>
 
           {!isMobile &&
             <React.Fragment>
-              <p className="contact phone">{contactInfo.phone}</p>
-              <p className="contact email">{contactInfo.email}</p>
-              <div className="sidebar-icons-container">
+              <PhoneStyle>{contactInfo.phone}</PhoneStyle>
+              <EmailStyle>{contactInfo.email}</EmailStyle>
+              <IconsContainer>
                 <SocialMediaIcons />
-              </div>
+              </IconsContainer>
             </React.Fragment>
           }
 
-          {isMobile &&
-            <div className="mobile-centering-spacer" />
-          }
+          {isMobile && <MobileCenteringSpacer/>}
+
         </Sidebar>
-      </div>
+      </SidebarContainer>
     </div>
   );
 }
