@@ -8,6 +8,8 @@ export const colors = {
 };
 
 export const contactInfo = {
-  phone: "630.956.8384",
-  email: "ateliermistralphotography@gmail.com"
+  phone: '630.956.8384',
+  email: 'ateliermistralphotography@gmail.com'
 };
+
+export const mobileTrayHeight = '51px';
