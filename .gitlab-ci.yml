@@ -7,17 +7,12 @@ variables:
   AWS_IMAGE: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-  AWS_REGION: $AWS_REGION
-  S3_BUCKET_STAGING: $S3_BUCKET_STAGING
-  S3_BUCKET_PRODUCTION: $S3_BUCKET_PRODUCTION
-  CDN_ID_STAGING: $CDN_ID_STAGING
-  CDN_ID_PRODUCTION: $CDN_ID_PRODUCTION
 
 GenerateImages:
   stage: prebuild
   only:
     - master
-    - development
+    - develop
   image: "rust:1.48.0"
   cache:
     key: images_$CI_COMMIT_REF_SLUG
@@ -38,7 +33,7 @@ Build:
   stage: build
   only:
     - master
-    - development
+    - develop
   image: node:14
   cache:
     key: build_$CI_COMMIT_REF_SLUG
@@ -55,9 +50,9 @@ DeployStaging:
   stage: deploy
   image: $AWS_IMAGE
   only:
-    - development
+    - develop
   before_script:
-    - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
+    - eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
   script:
     - aws s3 sync build s3://staging.atelier-mistral.com --delete
     - aws cloudfront create-invalidation --distribution-id E3S4WMILP7S81C --paths "/*"
@@ -69,7 +64,7 @@ DeployProduction:
     - master
   when: manual
   before_script:
-    - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
+    - eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
   script:
     - aws s3 sync build s3://atelier-mistral.com --delete
     - aws cloudfront create-invalidation --distribution-id EG9IJEHT3X1J2 --paths "/*"
